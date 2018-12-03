@@ -9,15 +9,16 @@ var adminRouter = require("../routes/admin");
 const auth = require("../middleware/authentication");
 /* GET users listing. */
 
-// router.get("/", function(req, res, next) {
-//   res.send("Home Page");
-// });
 router.get("/fail", (req, res, next) => {
   res.send("Failed");
 });
 
 router.get("/loggedin", (req, res, next) => {
   res.send("Logged in");
+});
+
+router.get("/loggedout", (req, res, next) => {
+  res.send("Logged logout");
 });
 
 router.post(
@@ -30,27 +31,23 @@ router.post(
 );
 
 router.post("/register", async (req, res, next) => {
-  // console.log("Yay here");
   return userFunctions
-    .addUser(req.query)
+    .addUser(req.body)
     .then(function() {
-      passport.authenticate("login", {
-        successRedirect: "/loggedin",
-        failureRedirect: "/fail",
-        failureFlash: true
-      })(req, res, function() {
-        res.redirect("/home");
-      });
+      res.redirect("/loggedin");
     })
     .catch(next);
 });
 
-router.use("/", auth.isLoggedIn, adminRouter);
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/loggedout");
+});
 
-// router.get("/logout", (req, res) => {
-//   req.logout();
-//   res.redirect("/");
-// });
+router.get("/", (req, res, next) => {
+  res.send("User router");
+});
+router.use("/", auth.isAdmin, adminRouter);
 
 // router.get("/question", async (req, res, next) => {
 //   try {

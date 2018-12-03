@@ -6,7 +6,9 @@ salt_factor = 8;
 mongoose.set("useCreateIndex", true);
 
 const applicantSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String
+  },
   email: {
     type: String,
     unique: true
