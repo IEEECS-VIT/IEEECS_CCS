@@ -3,11 +3,16 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const passport = require("passport");
+const localstrategy = require("passport-local");
 var mongoose = require("mongoose");
+const session = require("express-session");
+const flash = require("connect-flash");
 var adminRouter = require("./routes/admin");
 var usersRouter = require("./routes/users");
 var Q_Database = require("./models/question");
 
+const auth = require("./middleware/authentication");
 var app = express();
 
 // view engine setup
@@ -19,6 +24,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    secret: "Ferrari 488GTB",
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+require("./config/passport")(passport);
 
 app.use("/admin", adminRouter);
 app.use("/", usersRouter);
