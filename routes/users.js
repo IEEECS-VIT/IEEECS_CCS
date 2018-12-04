@@ -5,6 +5,7 @@ var A_Database = require("../models/applicant");
 var userService = require("../services/userService");
 var userFunctions = require("../services/userFunctions");
 var passport = require("passport");
+var url = require("url");
 var adminRouter = require("../routes/admin");
 const auth = require("../middleware/authentication");
 /* GET users listing. */
@@ -47,15 +48,27 @@ router.get("/logout", (req, res) => {
 router.get("/", (req, res, next) => {
   res.send("User router");
 });
-router.use("/", auth.isAdmin, adminRouter);
+// router.use("/", auth.isAdmin, adminRouter);
 
-// router.get("/question", async (req, res, next) => {
-//   try {
-//     const stuff = await userService.setQuestions();
-//     res.json(stuff);
-//   } catch (error) {
-//     return next(error);
-//   }
 // });
+
+router.post("/domain", auth.isUser, async (req, res, next) => {
+  try {
+    await A_Database.findByIdAndUpdate(req.user.id, {
+      domain: req.body.domain
+    });
+    res.redirect("/");
+  } catch (error) {
+    return next(error);
+  }
+});
+router.get("/question", auth.isUser, async (req, res, next) => {
+  try {
+    const stuff = await userService.setQuestions(req.user.domain);
+    res.json(stuff);
+  } catch (error) {
+    return next(error);
+  }
+});
 
 module.exports = router;

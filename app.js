@@ -8,7 +8,7 @@ const localstrategy = require("passport-local");
 var mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
-var adminRouter = require("./routes/admin");
+
 var usersRouter = require("./routes/users");
 var Q_Database = require("./models/question");
 
@@ -38,7 +38,6 @@ app.use(passport.session());
 app.use(flash());
 require("./config/passport")(passport);
 
-app.use("/admin", adminRouter);
 app.use("/", usersRouter);
 
 //setting Database
@@ -50,8 +49,9 @@ mongoose.connect(
 // Demo data
 
 // var stuff = new Q_Database({
-//   QID: 1007,
-//   question: "What is your favourite R6 operator"
+//   qid: 1007,
+//   question: "what is an the use of pipelining",
+//   qDomain: "technical"
 // });
 // stuff.save(function(err, Q_Database) {
 //   if (err) {

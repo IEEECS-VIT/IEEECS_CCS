@@ -1,8 +1,13 @@
 const mongoose = require("mongoose");
 
 const questionSchema = new mongoose.Schema({
-  QID: Number,
-  question: String
+  qid: Number,
+  question: String,
+  qDomain: {
+    type: String,
+    enum: ["technical", "design", "management"],
+    default: "management"
+  }
 });
 
 module.exports = mongoose.model("question", questionSchema);

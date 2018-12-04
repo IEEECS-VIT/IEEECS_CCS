@@ -1,21 +1,16 @@
 const Q_Database = require("../models/question");
 
-module.exports.setQuestions = async () => {
+module.exports.setQuestions = async domain => {
   try {
-    const questions = await Q_Database.find({}).lean();
-    var element;
-    var alloted_Q = [];
-    var i = 0;
-    while (i < 5) {
-      element = questions[Math.floor(Math.random() * questions.length)];
-      if (alloted_Q.includes(element)) {
-        continue;
-      } else {
-        alloted_Q.push(element);
-        i++;
-      }
+    const questions = await Q_Database.find({ qDomain: domain }).lean();
+    var j, x, i;
+    for (i = questions.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = questions[i];
+      questions[i] = questions[j];
+      questions[j] = x;
     }
-    return alloted_Q;
+    return questions;
   } catch (error) {
     throw error;
   }
