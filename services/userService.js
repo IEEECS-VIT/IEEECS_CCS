@@ -18,8 +18,24 @@ module.exports.setQuestions = async domain => {
 
 module.exports.timeStatus = async id => {
   try {
-    const data = A.Database.findById(req.user.id, {});
-    await A_Database.findByIdAndUpdate(req.user.id, {});
+    const data = await A.Database.findById(req.user.id, {});
+    var endHour = data.endHour;
+    var endMinute = data.endMinute;
+    var startHour = data.startHour;
+    var startMinute = data.startMinute;
+    var len = data.domain;
+    len = len.length;
+    var actDuration = 20 * len;
+    // (endHour - startHour) * 60 + (endMinute - (startMinute - 60));
+
+    var duration =
+      (endHour - (startHour + 1)) * 60 + (60 - startMinute + endMinute);
+    actDuration = duration - actDuration;
+    var status = "hold";
+    if (actDuration > 10) {
+      status = "invalid";
+    }
+    await A_Database.findByIdAndUpdate(req.user.id, { status: status });
   } catch (error) {
     throw error;
   }
