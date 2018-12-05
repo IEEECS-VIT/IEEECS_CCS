@@ -45,6 +45,8 @@ module.exports.addUser = userDetails => {
           console.log("not admin");
           newUser.email = userDetails.email;
           newUser.regno = userDetails.regno;
+          newUser.phone = userDetails.phone;
+          newUser.gender = userDetails.gender;
           newUser.password = newUser.generateHash(userDetails.password);
           newUser.save().then(savedUser => resolve(savedUser));
         })

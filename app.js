@@ -43,15 +43,14 @@ app.use("/", usersRouter);
 //setting Database
 mongoose.connect(
   "mongodb://localhost/CCS",
-  { useNewUrlParser: "true" }
+  { useNewUrlParser: true, useFindAndModify: false }
 );
-
 // Demo data
 
 // var stuff = new Q_Database({
 //   qid: 1007,
-//   question: "what is an the use of pipelining",
-//   qDomain: "technical"
+//   question: "name your favourite software",
+//   qDomain: "management"
 // });
 // stuff.save(function(err, Q_Database) {
 //   if (err) {

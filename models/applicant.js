@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const bcrypt = require("bcrypt-nodejs");
 salt_factor = 8;
 
@@ -22,12 +21,11 @@ const applicantSchema = new mongoose.Schema({
   gender: {
     type: String,
     enum: ["male", "female", "other"],
-    default: "female"
+    default: "other"
   },
   domain: [String],
-  ansTech: [String],
-  ansDesign: [String],
-  ansMgt: [String],
+  question: [Object],
+  answer: [Object],
   role: {
     type: String,
     enum: ["admin", "public"],
