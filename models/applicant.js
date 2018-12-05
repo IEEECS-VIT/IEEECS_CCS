@@ -35,10 +35,14 @@ const applicantSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["approved", "reject", "hold"],
+    enum: ["approved", "reject", "hold", "invalid"],
     default: "hold"
   },
-  check: String
+  check: String,
+  startHour: Number,
+  startMinute: Number,
+  endHour: Number,
+  endMinute: Number
 });
 
 applicantSchema.methods.generateHash = password => {

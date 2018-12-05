@@ -1,5 +1,5 @@
 const Q_Database = require("../models/question");
-
+const A_Database = require("../models/applicant");
 module.exports.setQuestions = async domain => {
   try {
     const questions = await Q_Database.find({ qDomain: domain }).lean();
@@ -11,6 +11,15 @@ module.exports.setQuestions = async domain => {
       questions[j] = x;
     }
     return questions;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports.timeStatus = async id => {
+  try {
+    const data = A.Database.findById(req.user.id, {});
+    await A_Database.findByIdAndUpdate(req.user.id, {});
   } catch (error) {
     throw error;
   }

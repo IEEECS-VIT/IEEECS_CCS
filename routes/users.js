@@ -8,6 +8,7 @@ var passport = require("passport");
 var url = require("url");
 var adminRouter = require("../routes/admin");
 const auth = require("../middleware/authentication");
+var date = new Date();
 /* GET users listing. */
 
 router.get("/fail", (req, res, next) => {
@@ -54,14 +55,19 @@ router.get("/", (req, res, next) => {
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
+    var startHour = date.getHours();
+    var startMinute = date.getMinutes();
     await A_Database.findByIdAndUpdate(req.user.id, {
-      domain: req.body.domain
+      domain: req.body.domain,
+      startHour: startHour,
+      startMinute: startMinute
     });
-    res.redirect("/");
+    res.redirect("/question");
   } catch (error) {
     return next(error);
   }
 });
+
 router.get("/question", auth.isUser, async (req, res, next) => {
   try {
     const stuff = await userService.setQuestions(req.user.domain);
@@ -71,4 +77,19 @@ router.get("/question", auth.isUser, async (req, res, next) => {
   }
 });
 
+router.post("/question", auth.isUser, async (req, res, next) => {
+  try {
+    var endHour = date.getHours();
+    var endMinute = date.getDate();
+    await A_Database.findByIdAndUpdate(req.user.id, {
+      ansTech: req.body.ansTech,
+      ansDesign: req.body.ansDesign,
+      ansMgt: req.body.ansMgt,
+      endHour: endHour,
+      endMinute: endMinute
+    });
+  } catch (error) {
+    return next(error);
+  }
+});
 module.exports = router;
