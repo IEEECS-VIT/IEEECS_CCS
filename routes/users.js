@@ -48,7 +48,7 @@ router.get("/", (req, res, next) => {
   res.send("User router");
 });
 
-// router.use("/", auth.isAdmin, adminRouter);
+router.use("/", auth.isAdmin, adminRouter);
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
