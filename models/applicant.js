@@ -24,8 +24,16 @@ const applicantSchema = new mongoose.Schema({
     default: "other"
   },
   domain: [String],
-  question: [Object],
-  answer: [Object],
+  response: [
+    {
+      questionId: {
+        type: mongoose.Schema.ObjectId,
+        ref: "question"
+      },
+      userSolution: String
+    }
+  ],
+  // answer: [Object],
   role: {
     type: String,
     enum: ["admin", "public"],

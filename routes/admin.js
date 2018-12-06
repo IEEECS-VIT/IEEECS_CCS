@@ -5,16 +5,16 @@ var adminService = require("../services/adminService");
 var A_Database = require("../models/applicant");
 /* GET home page. */
 
-router.get("/", auth.isAdmin, (req, res, next) => {
+router.get("/", (req, res, next) => {
   res.send("Here in admin portal");
 });
 
-router.get("/logout", auth.isAdmin, (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/loggedout");
 });
 
-router.get("/user", auth.isAdmin, async (req, res, next) => {
+router.get("/user", async (req, res, next) => {
   try {
     var data = await A_Database.find({ role: "public" }, "regno name status");
     res.json(data);
@@ -23,9 +23,9 @@ router.get("/user", auth.isAdmin, async (req, res, next) => {
   }
 });
 
-router.get("/:idd", auth.isAdmin, async (req, res, next) => {
+router.get("/userdata/:idd", async (req, res, next) => {
   try {
-    var idd = req.path;
+    var idd = req.params.idd;
     idd = idd.substr(1);
     var data = await A_Database.find(
       { regno: idd },
@@ -37,7 +37,7 @@ router.get("/:idd", auth.isAdmin, async (req, res, next) => {
   }
 });
 
-router.post("/:idd", auth.isAdmin, async (req, res, next) => {
+router.post("/userdata/:idd", async (req, res, next) => {
   try {
     var idd = req.path;
     idd = idd.substr(1);

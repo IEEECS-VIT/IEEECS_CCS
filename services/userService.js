@@ -8,7 +8,7 @@ module.exports.setQuestions = async id => {
     for (var ii = 0; ii < domain.length; ii++) {
       var newDomain = domain[ii];
       var questions = [];
-      questions = await Q_Database.find({ qDomain: newDomain }).lean();
+      questions = await Q_Database.find({ qDomain: newDomain }, "_id").lean();
       var j, x, i;
       for (i = questions.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));

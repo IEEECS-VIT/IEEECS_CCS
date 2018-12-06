@@ -10,6 +10,8 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 var usersRouter = require("./routes/users");
+var adminRouter = require("./routes/admin");
+
 var Q_Database = require("./models/question");
 
 const auth = require("./middleware/authentication");
@@ -38,7 +40,9 @@ app.use(passport.session());
 app.use(flash());
 require("./config/passport")(passport);
 
+app.all("/admin*", auth.isAdmin);
 app.use("/", usersRouter);
+app.use("/admin", adminRouter);
 
 //setting Database
 mongoose.connect(
@@ -51,7 +55,7 @@ mongoose.connect(
 //   qid: 1007,
 //   question: "name your favourite software",
 //   answer: "This is the answer",
-//   qDomain: "technical"
+//   qDomain: "management"
 // });
 // stuff.save(function(err, Q_Database) {
 //   if (err) {

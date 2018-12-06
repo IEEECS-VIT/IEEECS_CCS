@@ -27,18 +27,16 @@ router.post("/register", async (req, res, next) => {
     .catch(next);
 });
 
-router.get("/", auth.isUser, (req, res, next) => {
+router.get("/", (req, res, next) => {
   try {
+    if (req.user.role === "admin") {
+      res.redirect("/admin");
+    }
     res.send("User router");
   } catch (error) {
     next();
   }
 });
-router.get("/", auth.isAdmin, (req, res, next) => {
-  res.send("admin router");
-});
-
-// router.use("/", auth.isAdmin, adminRouter);
 
 router.get("/logout", (req, res) => {
   req.logout();
@@ -76,7 +74,20 @@ router.get("/question", auth.isUser, async (req, res, next) => {
   try {
     var stuff = await userService.setQuestions(req.user.id);
     console.log(stuff);
-    await A_Database.findByIdAndUpdate(req.user.id, { question: stuff });
+
+    let questions = stuff.map(question => {
+      return {
+        questionId: question._id,
+        userSolution: ""
+      };
+    });
+    // console.log(questions);
+    // let user = await A_Database.findById(req.user.id);
+    // user.response = questions;
+    // await user.save();
+    await A_Database.findByIdAndUpdate(req.user.id, {
+      response: questions
+    });
     res.json(stuff);
   } catch (error) {
     return next(error);
@@ -85,18 +96,37 @@ router.get("/question", auth.isUser, async (req, res, next) => {
 
 router.post("/question", auth.isUser, async (req, res, next) => {
   try {
+    const solutions = req.body.solutions;
     var endHour = date.getHours();
     var endMinute = date.getDate();
-    await A_Database.findByIdAndUpdate(req.user.id, {
-      answer: req.body.answer,
-      endHour: endHour,
-      endMinute: endMinute
+    let user = await A_Database.findById(req.user.id);
+    console.log(user);
+    let responseToUpdate = user.response;
+    responseToUpdate.forEach(question => {
+      solutions.forEach(solution => {
+        if (solution.questionId == question.questionId) {
+          question.userSolution = solution.userSolution;
+        }
+      });
     });
-    await userService.timeStatus(req.user.id);
-    res.redirect("/");
+    user.response = responseToUpdate;
+    user.endHour = endHour;
+    user.endMinute = endMinute;
+    await user.save();
+
+    // await userService.timeStatus(req.user.id);
+    res.send("done!");
   } catch (error) {
     return next(error);
   }
+});
+
+router.get("/getdata", async (req, res, next) => {
+  const q = await A_Database.find({}).populate(
+    "response.questionId",
+    "question qDomain"
+  );
+  res.json(q);
 });
 
 module.exports = router;
