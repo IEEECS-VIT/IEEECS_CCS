@@ -50,7 +50,8 @@ mongoose.connect(
 // var stuff = new Q_Database({
 //   qid: 1007,
 //   question: "name your favourite software",
-//   qDomain: "management"
+//   answer: "This is the answer",
+//   qDomain: "technical"
 // });
 // stuff.save(function(err, Q_Database) {
 //   if (err) {

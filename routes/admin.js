@@ -5,8 +5,13 @@ var adminService = require("../services/adminService");
 var A_Database = require("../models/applicant");
 /* GET home page. */
 
-router.get("/", (req, res, next) => {
+router.get("/", auth.isAdmin, (req, res, next) => {
   res.send("Here in admin portal");
+});
+
+router.get("/logout", auth.isAdmin, (req, res) => {
+  req.logout();
+  res.redirect("/loggedout");
 });
 
 router.get("/user", auth.isAdmin, async (req, res, next) => {

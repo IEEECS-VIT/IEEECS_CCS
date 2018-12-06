@@ -27,6 +27,19 @@ router.post("/register", async (req, res, next) => {
     .catch(next);
 });
 
+router.get("/", auth.isUser, (req, res, next) => {
+  try {
+    res.send("User router");
+  } catch (error) {
+    next();
+  }
+});
+router.get("/", auth.isAdmin, (req, res, next) => {
+  res.send("admin router");
+});
+
+// router.use("/", auth.isAdmin, adminRouter);
+
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/loggedout");
@@ -43,12 +56,6 @@ router.get("/loggedin", (req, res, next) => {
 router.get("/loggedout", (req, res, next) => {
   res.send("Logged logout");
 });
-
-router.get("/", (req, res, next) => {
-  res.send("User router");
-});
-
-router.use("/", auth.isAdmin, adminRouter);
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
@@ -91,4 +98,5 @@ router.post("/question", auth.isUser, async (req, res, next) => {
     return next(error);
   }
 });
+
 module.exports = router;
