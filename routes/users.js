@@ -8,6 +8,17 @@ var passport = require("passport");
 const auth = require("../middleware/authentication");
 var date = new Date();
 
+router.get("/", (req, res, next) => {
+  try {
+    if (req.user.role === "admin") {
+      return res.redirect("/admin");
+    }
+    res.send("User router");
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post(
   "/login",
   passport.authenticate("login", {
@@ -24,17 +35,6 @@ router.post("/register", async (req, res, next) => {
       res.redirect("/loggedin");
     })
     .catch(next);
-});
-
-router.get("/", (req, res, next) => {
-  try {
-    if (req.user.role === "admin") {
-      res.redirect("/admin");
-    }
-    res.send("User router");
-  } catch (error) {
-    next();
-  }
 });
 
 router.get("/logout", (req, res) => {
