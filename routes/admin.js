@@ -26,10 +26,13 @@ router.get("/user", async (req, res, next) => {
 router.get("/userdata/:idd", async (req, res, next) => {
   try {
     var idd = req.path;
+    idd = idd.split("/");
+    idd = idd[2];
+    console.log(idd);
     var data = await A_Database.find(
       { regno: idd },
-      "regno question answer status"
-    );
+      "regno response status"
+    ).populate("response.questionId", "question qDomain answer");
     res.json(data);
   } catch (error) {
     return next(error);
@@ -39,7 +42,8 @@ router.get("/userdata/:idd", async (req, res, next) => {
 router.post("/userdata/:idd", async (req, res, next) => {
   try {
     var idd = req.path;
-    idd = idd.substr(1);
+    idd = idd.split("/");
+    idd = idd[2];
     await adminService.updateStatus(idd, req.user.id, req.body.status);
     res.send("Admin test complete");
   } catch (error) {
