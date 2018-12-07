@@ -1,0 +1,66 @@
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #202020;
+    color: white;
+}
+
+.button-placement {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.custom-button {
+    margin-top: 1em;
+    color: white;
+    width: 10em;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #FAA41A !important;
+    border-radius: 100px;
+}
+
+.info {
+    height: 80%;
+    background-color: #535353;
+    margin: 0 1em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.logo {
+    height: 75%;
+    margin: auto;
+}
+
+.top {
+    height: 100px;
+    /* margin: 0.5em; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+label {
+    color: white;
+}
+
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid #FAA41A !important;
+    border-bottom: #FAA41A 2px solid !important;
+}
+
+[type="checkbox"]:checked+span:not(.lever):after {
+    border-right: 2px solid #FAA41A !important;
+    border-bottom: #FAA41A 2px solid !important;
+}

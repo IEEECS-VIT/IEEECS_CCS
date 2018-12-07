@@ -15,7 +15,7 @@ router.get("/", (req,res) => {
 router.post(
   "/login",
   passport.authenticate("login", {
-    successRedirect: "/",
+    successRedirect: "/user-role",
     failureRedirect: "/fail",
     failureFlash: true
   })
@@ -29,10 +29,22 @@ router.post("/register", async (req, res, next) => {
   return userFunctions
     .addUser(req.body)
     .then(function() {
-      res.redirect("/loggedin");
+      res.redirect("/");
     })
     .catch(next);
 });
+
+router.get("/user-role", (req, res, next) => {
+  try {
+    if (req.user.role === "admin") {
+      return res.redirect("/admin");
+    }
+    res.redirect("/loggedin");
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 // router.get("/", (req, res, next) => {
 //   try {
@@ -47,7 +59,7 @@ router.post("/register", async (req, res, next) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/loggedout");
+  res.redirect("/");
 });
 
 router.get("/fail", (req, res, next) => {
@@ -55,12 +67,12 @@ router.get("/fail", (req, res, next) => {
 });
 
 router.get("/loggedin", (req, res, next) => {
-  res.send("Logged in");
+  res.render("instructions");
 });
 
-router.get("/loggedout", (req, res, next) => {
-  res.send("Logged logout");
-});
+// router.get("/loggedout", (req, res, next) => {
+//   res.send("Logged logout");
+// });
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {

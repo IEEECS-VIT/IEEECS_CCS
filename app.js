@@ -1,22 +1,31 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const passport = require("passport");
 const localstrategy = require("passport-local");
-var mongoose = require("mongoose");
-const session = require("express-session");
+const mongoose = require("mongoose");
+const session = require("cookie-session");
 const flash = require("connect-flash");
 require("dotenv").config();
 
-var usersRouter = require("./routes/users");
-var adminRouter = require("./routes/admin");
+//setting Database
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useNewUrlParser: true, useFindAndModify: false },
+  err => {
+    if (!err) console.log("Connection successful");
+  }
+);
 
-var Q_Database = require("./models/question");
+const usersRouter = require("./routes/users");
+const adminRouter = require("./routes/admin");
+
+const Q_Database = require("./models/question");
 
 const auth = require("./middleware/authentication");
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -28,31 +37,33 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+const keys = ["Ron", "Swanson"];
+const expiryDate = new Date(5 * Date.now() + 60 * 60 * 1000); // 5 hours
+// console.log(expiryDate);
 app.use(
   session({
-    secret: "Ferrari 488GTB",
-    resave: false,
-    saveUninitialized: false
+    secret: "mustache",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      secure: true,
+      expires: expiryDate
+    },
+    keys: keys
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+app.use("/", usersRouter);
+app.all("/admin*", auth.isAdmin);
+app.use("/admin", adminRouter);
 require("./config/passport")(passport);
 
-app.all("/admin*", auth.isAdmin);
-app.use("/", usersRouter);
-app.use("/admin", adminRouter);
-
-//setting Database
-mongoose.connect(
-  process.env.MONGO_URI,
-  { useNewUrlParser: true, useFindAndModify: false }
-);
 // Demo data
 
-// var stuff = new Q_Database({
+// const stuff = new Q_Database({
 //   qid: 1007,
 //   question: "name your favourite software",
 //   answer: "This is the answer",
