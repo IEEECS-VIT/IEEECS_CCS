@@ -8,6 +8,10 @@ var passport = require("passport");
 const auth = require("../middleware/authentication");
 var date = new Date();
 
+router.get("/", (req,res) => {
+  res.render("index");
+});
+
 router.post(
   "/login",
   passport.authenticate("login", {
@@ -16,6 +20,10 @@ router.post(
     failureFlash: true
   })
 );
+
+router.get("/register",(req,res) => {
+  res.render("register");
+});
 
 router.post("/register", async (req, res, next) => {
   return userFunctions
@@ -26,16 +34,16 @@ router.post("/register", async (req, res, next) => {
     .catch(next);
 });
 
-router.get("/", (req, res, next) => {
-  try {
-    if (req.user.role === "admin") {
-      res.redirect("/admin");
-    }
-    res.send("User router");
-  } catch (error) {
-    next();
-  }
-});
+// router.get("/", (req, res, next) => {
+//   try {
+//     if (req.user.role === "admin") {
+//       res.redirect("/admin");
+//     }
+//     res.send("User router");
+//   } catch (error) {
+//     next();
+//   }
+// });
 
 router.get("/logout", (req, res) => {
   req.logout();

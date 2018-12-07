@@ -1,0 +1,9 @@
+form {
+    margin-top: 25%;
+}
+
+@media only screen and (max-width: 993px) {
+    form {
+        margin-top: 5%;
+    }
+}

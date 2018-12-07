@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>IEEECS | Selections</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css ">
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col12 top">
+                <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
+            </div>
+        </div>
+        <div class="row" data-sal-duration="500" data-sal="fade" data-sal-delay="300" data-sal-easing="ease-in">
+            <div class="col s7 s12 m12 l7 sect1">
+                <div class="right-inner">
+                    <h4 class="heading">Core Comittee Selections</h4>
+                    <img src="images/illustration.svg" alt="illustration" class="illustration" />
+                    <p id="login-web">
+                        Already registered? Log in <a href="/" class="login-here">here</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col s5 s12 m12 l5 sect2">
+                <form action="" name="reg_form">
+                    <h4 class="form-heading">REGISTER</h4>
+                    <ul class="">
+                        <li class="input-field">
+                            <label for="">Name</label><input type="text" class="validate" name="name" pattern="[A-Za-z0-9]+"
+                                required />
+                        </li>
+                        <li class="input-field">
+                            <label for="">Registration No.</label><input type="text" class="validate" name="reg"
+                                pattern="18[A-Z]{3,}[0-9]{4,}" required />
+                        </li>
+                        <li class="input-field">
+                            <label for="">Email</label><input type="email" class="validate" required />
+                        </li>
+                        <li class="input-field">
+                            <label for="">Phone No.</label><input type="number" class="validate" required />
+                        </li>
+                        <li class="input-field">
+                            <label for="">Password</label><input type="password" class="validate" />
+                        </li>
+                        <li class="input-field gender">
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" class="validate" />
+                                    <span>Male</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" />
+                                    <span>Female</span>
+                                </label>
+                            </p>
+                        </li>
+                        <li class="button-placement">
+                            <a class="waves-effect waves btn-flat custom-button" onclick="return validateform()">
+                                <!--<input type="submit" onclick="return validateform()">-->SUBMIT</a>
+                            <!-- gender -->
+                        </li>
+                    </ul>
+                </form>
+                <p style="color:white; text-align:center" id="login-mobile">
+                    Already registered? Log in <a href="/" class="login-here">here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="node_modules/sal.js/dist/sal.js">
+    </script>
+    <script>
+        sal({
+            once: true
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="validate.js"></script>
+    <!-- <script>
+        function validateform() {
+            var name = document.reg_form.name.value;
+            var reg = document.reg_form.reg.value;
+
+            if (name == null || name == "") {
+                alert("Name can't be blank");
+                return false;
+            }
+            if (reg.length != 9) {
+                alert("Please retype Registration number");
+                return false;
+            }
+        }
+    </script> -->
+</body>
+
+</html>

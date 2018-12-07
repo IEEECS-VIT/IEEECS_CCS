@@ -1,11 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>IEEECS | Selections</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css ">
+  <link rel="stylesheet" href="/stylesheets/register.css" />
+  <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col12 top">
+        <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
+      </div>
+    </div>
+    <div class="row" data-sal-duration="500" data-sal="fade" data-sal-delay="300" data-sal-easing="ease-in">
+      <div class="col s7 s12 m12 l7 sect1">
+        <div class="right-inner">
+          <h4 class="heading">Core Comittee Selections</h4>
+          <img src="/images/illustration.svg" alt="illustration" class="illustration" />
+          <p id="login-web">
+            Haven't registered? Register <a href="/register" class="login-here">here</a>
+          </p>
+        </div>
+      </div>
+      <div class="col s5 s12 m12 l5 sect2">
+        <form action="">
+          <h4 class="form-heading">Login</h4>
+          <ul class="">
+            <li class="input-field">
+              <label for="">Registration No.</label><input type="text" />
+            </li>
+            <li class="input-field">
+              <label for="">Password</label><input type="password" />
+            <li class="button-placement">
+              <a class="waves-effect waves btn-flat custom-button">Submit</a>
+              <!-- gender -->
+            </li>
+          </ul>
+        </form>
+        <p style="color:white; text-align:center" id="login-mobile">
+          Haven't registered? Register <a href="/register" class="login-here">here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="/node_modules/sal.js/dist/sal.js">
+  </script>
+  <script>
+    sal({
+      once: true
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
 </html>
