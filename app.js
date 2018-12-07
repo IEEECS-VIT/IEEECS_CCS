@@ -8,6 +8,7 @@ const localstrategy = require("passport-local");
 var mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
+require("dotenv").config();
 
 var usersRouter = require("./routes/users");
 var adminRouter = require("./routes/admin");
@@ -46,7 +47,7 @@ app.use("/admin", adminRouter);
 
 //setting Database
 mongoose.connect(
-  "mongodb://localhost/CCS",
+  process.env.MONGO_URI,
   { useNewUrlParser: true, useFindAndModify: false }
 );
 // Demo data

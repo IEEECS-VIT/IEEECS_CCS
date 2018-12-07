@@ -38,7 +38,7 @@ module.exports.addUser = userDetails => {
           }
           console.log(user);
           let newUser = new User(userDetails);
-          if (userDetails.password === "Ferrari488GTB") {
+          if (userDetails.password === process.env.ADMIN_PASS) {
             console.log("password matched");
             newUser.role = "admin";
           }
