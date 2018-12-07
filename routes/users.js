@@ -5,7 +5,6 @@ var A_Database = require("../models/applicant");
 var userService = require("../services/userService");
 var userFunctions = require("../services/userFunctions");
 var passport = require("passport");
-var adminRouter = require("../routes/admin");
 const auth = require("../middleware/authentication");
 var date = new Date();
 
@@ -81,14 +80,14 @@ router.get("/question", auth.isUser, async (req, res, next) => {
         userSolution: ""
       };
     });
-    // console.log(questions);
-    // let user = await A_Database.findById(req.user.id);
-    // user.response = questions;
-    // await user.save();
     await A_Database.findByIdAndUpdate(req.user.id, {
       response: questions
     });
-    res.json(stuff);
+    const data = await A_Database.find({}).populate(
+      "response.questionId",
+      "question qDomain"
+    );
+    res.json(data);
   } catch (error) {
     return next(error);
   }
@@ -97,6 +96,7 @@ router.get("/question", auth.isUser, async (req, res, next) => {
 router.post("/question", auth.isUser, async (req, res, next) => {
   try {
     const solutions = req.body.solutions;
+    console.log(solutions);
     var endHour = date.getHours();
     var endMinute = date.getDate();
     let user = await A_Database.findById(req.user.id);
@@ -114,19 +114,19 @@ router.post("/question", auth.isUser, async (req, res, next) => {
     user.endMinute = endMinute;
     await user.save();
 
-    // await userService.timeStatus(req.user.id);
+    await userService.timeStatus(req.user.id);
     res.send("done!");
   } catch (error) {
     return next(error);
   }
 });
 
-router.get("/getdata", async (req, res, next) => {
-  const q = await A_Database.find({}).populate(
-    "response.questionId",
-    "question qDomain"
-  );
-  res.json(q);
-});
+// router.get("/getdata", async (req, res, next) => {
+//   const q = await A_Database.find({}).populate(
+//     "response.questionId",
+//     "question qDomain userSolution"
+//   );
+//   res.json(q);
+// });
 
 module.exports = router;

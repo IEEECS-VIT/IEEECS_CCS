@@ -25,8 +25,7 @@ router.get("/user", async (req, res, next) => {
 
 router.get("/userdata/:idd", async (req, res, next) => {
   try {
-    var idd = req.params.idd;
-    idd = idd.substr(1);
+    var idd = req.path;
     var data = await A_Database.find(
       { regno: idd },
       "regno question answer status"
