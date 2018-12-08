@@ -66,7 +66,7 @@ router.get("/fail", (req, res, next) => {
   res.send("Failed");
 });
 
-router.get("/instructions", (req, res, next) => {
+router.get("/instructions", auth.isUser,(req, res, next) => {
   res.render("instructions");
 });
 
@@ -78,11 +78,14 @@ router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
     var startHour = date.getHours();
     var startMinute = date.getMinutes();
+    console.log(req.user.id);
+    console.log(req.body);
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: req.body.domain,
       startHour: startHour,
       startMinute: startMinute
     });
+    // res.redirect
     res.redirect("/question");
   } catch (error) {
     return next(error);
@@ -103,7 +106,8 @@ router.get("/question", auth.isUser, async (req, res, next) => {
     await A_Database.findByIdAndUpdate(req.user.id, {
       response: questions
     });
-    const data = await A_Database.find({}).populate(
+    console.log(req.user.id)
+    const data = await A_Database.find({_id:req.user.id},"response").populate(
       "response.questionId",
       "question qDomain"
     );
