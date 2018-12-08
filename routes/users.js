@@ -8,7 +8,7 @@ var passport = require("passport");
 const auth = require("../middleware/authentication");
 var date = new Date();
 
-router.get("/", (req,res) => {
+router.get("/", (req, res) => {
   res.render("index");
 });
 
@@ -21,7 +21,7 @@ router.post(
   })
 );
 
-router.get("/register",(req,res) => {
+router.get("/register", (req, res) => {
   res.render("register");
 });
 
@@ -44,7 +44,6 @@ router.get("/user-role", (req, res, next) => {
     next(error);
   }
 });
-
 
 // router.get("/", (req, res, next) => {
 //   try {
