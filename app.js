@@ -4,11 +4,13 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const passport = require("passport");
+const bodyParser = require("body-parser");
 const localstrategy = require("passport-local");
 const mongoose = require("mongoose");
 const session = require("cookie-session");
 const flash = require("connect-flash");
 require("dotenv").config();
+
 
 //setting Database
 mongoose.connect(
@@ -32,6 +34,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(logger("dev"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

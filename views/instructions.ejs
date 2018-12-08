@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/instructions.css">
     <title>Ready for your test?</title>
 </head>
@@ -36,25 +37,26 @@
                         <div>
                             <p>
                                 <label>
-                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <input id="indeterminate-checkbox" type="checkbox" value="technical" class="t" />
                                     <span>Technical</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <input id="indeterminate-checkbox" type="checkbox" value="management" class="m" />
                                     <span>Management</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input id="indeterminate-checkbox" type="checkbox" />
+                                    <input id="indeterminate-checkbox" type="checkbox" value="design" class="d" />
                                     <span>Design</span>
                                 </label>
                             </p>
                         </div>
                         <span class="button-placement">
-                            <a class="waves-effect waves btn-flat custom-button" href="#">Begin Quiz</a>
+                            <a class="waves-effect waves btn-flat custom-button" href="#" onclick="displayDomains()">Begin
+                                Quiz</a>
                         </span>
                     </form>
 
@@ -65,5 +67,58 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
+<script>
+    var selected = ['test', ];
+    $(document).ready(function () {
+        console.log("here");
+
+
+
+        // var management = $('.m').val();
+        // var design = $('.d').val();
+    });
+
+    function displayDomains() {
+        var domain = [];
+        console.log("Hello");
+        if ($('.t').is(':checked')) {
+            console.log("hello");
+            var technical = $('.t').val();
+            domain.push(technical);
+        }
+
+        if ($('.m').is(':checked')) {
+            console.log("hello");
+            var management = $('.m').val();
+            domain.push(management);
+        }
+
+        if ($('.d').is(':checked')) {
+            var design = $('.d').val();
+            domain.push(design);
+        }
+        $.ajax({
+            url: "/domain",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/x-www-form-urlencoded",
+            data: {
+                domain: domain
+            },
+            success: function (question) {
+                console.log(question);
+            },
+            error: function (msg) {
+                console.log(msg);
+            }
+        });
+    }
+    // var stringArray = selected.join();
+
+    // function displayDomains() {
+    //     console.log(selected);
+    //     // console.log(stringArray);
+    // }
+</script>
 
 </html>
