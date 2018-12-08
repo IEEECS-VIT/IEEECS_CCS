@@ -108,7 +108,7 @@ router.get("/question", auth.isUser, async (req, res, next) => {
     console.log(req.user.id);
     const data = await A_Database.find(
       { _id: req.user.id },
-      "response"
+      "response domain"
     ).populate("response.questionId", "question qDomain");
     res.render("quiz", { data });
   } catch (error) {
