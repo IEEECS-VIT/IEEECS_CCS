@@ -1,0 +1,85 @@
+html {
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+}
+
+.custom-logo {
+    width: 35%;
+    /* margin: 0.2em; */
+    margin: 2%;
+}
+
+.nav-extended {
+    background-color: #202020;
+}
+
+.indicator {
+    background-color: #FAA41A;
+}
+
+.tabs.tabs-transparent .indicator {
+    background-color: #FAA41A;
+}
+
+.tabs.tabs-transparent .tab a.active {
+    font-weight: 600;
+}
+
+/*  */
+/*  */
+/*  */
+
+body {
+    background-color: #2c2c2c;
+    color: white;
+}
+
+.box {
+    margin-top: 5em;
+    margin: 5em 5%;
+    padding: 1.5em 3%;
+    color: black;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    /* overflow-y: visible; */
+    /* height: 100vh; */
+    -webkit-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.55);
+    box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.55);
+}
+
+.q {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.watch {
+    background-color: #f7f7f7;
+    color: red;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.repeated {
+    margin: 2em 0em;
+}
+
+textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #FAA41A !important;
+    box-shadow: 0 1px 0 0 #FAA41A !important;
+}
+
+/* .modal-text {
+    color: black !important;
+} */
+
+/* for testing */
+/* .active {
+    background-color: #FAA41A;
+} */
+
+/* .carousel.carousel-slider .carousel-item { */
+/* min-height: 1000vh; */
+/* min-height: calc(75vh*10); */
+/* set min height to the probable amout of extended text areas totaled with all the 10 questions */

@@ -23,7 +23,10 @@
         <div class="row">
             <div class="col12">
                 <div class="info">
-                    <h4>Lorem</h4>
+                    <h4>
+                        Welcome
+                        <%=user.name%>
+                    </h4>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora facere blanditiis, laborum
                         sequi quo saepe dolor vel repudiandae! Aut, error, libero placeat cumque in quia optio aperiam
                         quae est mollitia dolores quod impedit dolore eaque quaerat! Debitis consequuntur perferendis
@@ -106,7 +109,7 @@
                 domain: domain
             },
             success: function (question) {
-                console.log(question);
+                window.location.href = "/question";
             },
             error: function (msg) {
                 console.log(msg);
