@@ -5,18 +5,17 @@ var adminService = require("../services/adminService");
 var A_Database = require("../models/applicant");
 /* GET home page. */
 
-router.get("/", (req, res, next) => {
-  res.send("Here in admin portal");
-});
-
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/loggedout");
 });
 
-router.get("/user", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    var data = await A_Database.find({ role: "public" }, "regno name status");
+    var data = await A_Database.find(
+      { role: "public" },
+      "regno status domain phone"
+    );
     res.json(data);
   } catch (error) {
     return next(error);

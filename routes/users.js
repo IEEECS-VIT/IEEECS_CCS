@@ -65,7 +65,7 @@ router.get("/fail", (req, res, next) => {
   res.send("Failed");
 });
 
-router.get("/instructions", auth.isUser,(req, res, next) => {
+router.get("/instructions", auth.isUser, (req, res, next) => {
   res.render("instructions");
 });
 
@@ -105,11 +105,11 @@ router.get("/question", auth.isUser, async (req, res, next) => {
     await A_Database.findByIdAndUpdate(req.user.id, {
       response: questions
     });
-    console.log(req.user.id)
-    const data = await A_Database.find({_id:req.user.id},"response").populate(
-      "response.questionId",
-      "question qDomain"
-    );
+    console.log(req.user.id);
+    const data = await A_Database.find(
+      { _id: req.user.id },
+      "response domain"
+    ).populate("response.questionId", "question qDomain");
     res.json(data);
   } catch (error) {
     return next(error);
