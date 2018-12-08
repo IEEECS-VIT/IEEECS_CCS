@@ -31,16 +31,16 @@
         </div>
       </div>
       <div class="col s5 s12 m12 l5 sect2">
-        <form action="">
+        <form action="/login" method="POST">
           <h4 class="form-heading">Login</h4>
           <ul class="">
             <li class="input-field">
-              <label for="">Registration No.</label><input type="text" />
+              <label for="">Registration No.</label><input type="text" name="email" />
             </li>
             <li class="input-field">
-              <label for="">Password</label><input type="password" />
+              <label for="">Password</label><input type="password" name="password" />
             <li class="button-placement">
-              <a class="waves-effect waves btn-flat custom-button">Submit</a>
+              <input type="submit" class="waves-effect waves btn-flat custom-button" value="Login" />
               <!-- gender -->
             </li>
           </ul>

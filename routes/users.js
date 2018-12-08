@@ -39,7 +39,7 @@ router.get("/user-role", (req, res, next) => {
     if (req.user.role === "admin") {
       return res.redirect("/admin");
     }
-    res.redirect("/loggedin");
+    res.redirect("/instructions");
   } catch (error) {
     next(error);
   }
@@ -66,7 +66,7 @@ router.get("/fail", (req, res, next) => {
   res.send("Failed");
 });
 
-router.get("/loggedin", (req, res, next) => {
+router.get("/instructions", (req, res, next) => {
   res.render("instructions");
 });
 

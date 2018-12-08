@@ -23,14 +23,14 @@
             <div class="col s7 s12 m12 l7 sect1">
                 <div class="right-inner">
                     <h4 class="heading">Core Comittee Selections</h4>
-                    <img src="images/illustration.svg" alt="illustration" class="illustration" />
+                    <img src="/images/illustration.svg" alt="illustration" class="illustration" />
                     <p id="login-web">
                         Already registered? Log in <a href="/" class="login-here">here</a>
                     </p>
                 </div>
             </div>
             <div class="col s5 s12 m12 l5 sect2">
-                <form action="" name="reg_form">
+                <form action="/register" method="POST" name="reg_form">
                     <h4 class="form-heading">REGISTER</h4>
                     <ul class="">
                         <li class="input-field">
@@ -38,35 +38,35 @@
                                 required />
                         </li>
                         <li class="input-field">
-                            <label for="">Registration No.</label><input type="text" class="validate" name="reg"
+                            <label for="">Registration No.</label><input type="text" class="validate" name="regno"
                                 pattern="18[A-Z]{3,}[0-9]{4,}" required />
                         </li>
                         <li class="input-field">
-                            <label for="">Email</label><input type="email" class="validate" required />
+                            <label for="">Email</label><input type="email" name="email" class="validate" required />
                         </li>
                         <li class="input-field">
-                            <label for="">Phone No.</label><input type="number" class="validate" required />
+                            <label for="">Phone No.</label><input type="number" name="phone" class="validate" required />
                         </li>
                         <li class="input-field">
-                            <label for="">Password</label><input type="password" class="validate" />
+                            <label for="">Password</label><input type="password" name="password" class="validate" />
                         </li>
                         <li class="input-field gender">
                             <p>
                                 <label>
-                                    <input name="group1" type="radio" class="validate" />
+                                    <input name="gender" type="radio" value="male" class="validate" />
                                     <span>Male</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input name="group1" type="radio" />
+                                    <input name="gender" value="female" type="radio" />
                                     <span>Female</span>
                                 </label>
                             </p>
                         </li>
                         <li class="button-placement">
-                            <a class="waves-effect waves btn-flat custom-button" onclick="return validateform()">
-                                <!--<input type="submit" onclick="return validateform()">-->SUBMIT</a>
+                            <input type="submit" class="waves-effect waves btn-flat custom-button" value="Submit" />
+                            <!--<input type="submit" onclick="return validateform()">-->
                             <!-- gender -->
                         </li>
                     </ul>
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    <script src="node_modules/sal.js/dist/sal.js">
+    <script src="/node_modules/sal.js/dist/sal.js">
     </script>
     <script>
         sal({
@@ -85,7 +85,7 @@
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="validate.js"></script>
+    <script src="/scripts/validate.js"></script>
     <!-- <script>
         function validateform() {
             var name = document.reg_form.name.value;
