@@ -33,48 +33,73 @@
             </div>
         </nav>
     </div>
-
     <div id="technical_tab" class="col s12">
         <div class="box tech-q">
+            <% var t_count=0; %>
+            <% data.response.forEach((obj) => { %>
+            <% if(obj.questionId.qDomain == "technical") { %>
             <div class="question">
+                <% t_count++; %>
                 <div class="repeated">
-                    <h5>Question X</h5>
+                    <h5>Question
+                        <%=t_count%>
+                    </h5>
                     <p class="q">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit nulla sed sit, omnis odio
-                        saepe eos facilis et ipsa quidem, voluptatibus ducimus ab repellat similique doloremque
-                        adipisci unde reprehenderit quis.</p>
+                        <%= obj.questionId.question %>
+                    </p>
                     <textarea class="materialize-textarea" placeholder="Type your answer" data-length="250"></textarea>
                 </div>
-                <!--  -->
             </div>
+            <% }}); %>
+            <% if (t_count==0) { %>
+            <p>Not chosen!</p>
+            <% } %>
         </div>
     </div>
     <div id="management_tab" class="col s12">
-        <div class="box mgmt-q">
+        <div class="box tech-q">
+            <% var m_count=0; %>
+            <% data.response.forEach((obj) => { %>
+            <% if(obj.questionId.qDomain == "management") { %>
             <div class="question">
+                <% m_count++; %>
                 <div class="repeated">
-                    <h5>Question Y</h5>
+                    <h5>Question
+                        <%=m_count%>
+                    </h5>
                     <p class="q">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit nulla sed sit, omnis odio saepe
-                        eos facilis et ipsa quidem, voluptatibus ducimus ab repellat similique doloremque adipisci unde
-                        reprehenderit quis.</p>
+                        <%= obj.questionId.question %>
+                    </p>
                     <textarea class="materialize-textarea" placeholder="Type your answer" data-length="250"></textarea>
                 </div>
             </div>
+            <% }}); %>
+            <% if (m_count==0) { %>
+            <p>Not chosen!</p>
+            <% } %>
         </div>
     </div>
     <div id="design_tab" class="col s12">
-        <div class="box dsgn-q">
+        <div class="box tech-q">
+            <% var d_count=0; %>
+            <% data.response.forEach((obj) => { %>
+            <% if(obj.questionId.qDomain == "design") { %>
             <div class="question">
+                <% d_count++; %>
                 <div class="repeated">
-                    <h5>Question Z</h5>
+                    <h5>Question
+                        <%=d_count%>
+                    </h5>
                     <p class="q">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit nulla sed sit, omnis odio saepe
-                        eos facilis et ipsa quidem, voluptatibus ducimus ab repellat similique doloremque adipisci unde
-                        reprehenderit quis.</p>
+                        <%= obj.questionId.question %>
+                    </p>
                     <textarea class="materialize-textarea" placeholder="Type your answer" data-length="250"></textarea>
                 </div>
             </div>
+            <% }}); %>
+            <% if (d_count==0) { %>
+            <p>Not chosen!</p>
+            <% } %>
         </div>
     </div>
     <div id="modal1" class="modal">
@@ -111,11 +136,12 @@
         });
     </script>
     <script>
-        var sec = 6000;
+        var sec = 10;
         var time = setInterval(myTimer, 1000);
 
         function myTimer() {
-            document.getElementById('timer').innerHTML = parseInt(sec / 60) + "min " + (sec % 60) + "sec left";
+            document.getElementById('timer').innerHTML = parseInt(sec / 60) + "min " + (sec % 60) +
+                "sec left";
             sec--;
             if (sec == -1) {
                 clearInterval(time);
