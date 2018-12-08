@@ -66,7 +66,7 @@ router.get("/fail", (req, res, next) => {
 });
 
 router.get("/instructions", auth.isUser, (req, res, next) => {
-  res.render("instructions");
+  res.render("instructions", { user: req.user });
 });
 
 // router.get("/loggedout", (req, res, next) => {
@@ -85,7 +85,7 @@ router.post("/domain", auth.isUser, async (req, res, next) => {
       startMinute: startMinute
     });
     // res.redirect
-    res.redirect("/question");
+    res.json({ succecc: true });
   } catch (error) {
     return next(error);
   }
@@ -108,9 +108,9 @@ router.get("/question", auth.isUser, async (req, res, next) => {
     console.log(req.user.id);
     const data = await A_Database.find(
       { _id: req.user.id },
-      "response domain"
+      "response"
     ).populate("response.questionId", "question qDomain");
-    res.json(data);
+    res.render("quiz", { data });
   } catch (error) {
     return next(error);
   }
