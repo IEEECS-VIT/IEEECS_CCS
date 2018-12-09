@@ -44,6 +44,11 @@ const applicantSchema = new mongoose.Schema({
     enum: ["approved", "reject", "hold", "invalid"],
     default: "hold"
   },
+  overSmart: {
+    type: String,
+    enum: ["yes", "no"],
+    default: "no"
+  },
   check: String,
   startHour: Number,
   startMinute: Number,

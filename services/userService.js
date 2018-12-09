@@ -31,18 +31,16 @@ module.exports.timeStatus = async id => {
     var endMinute = data.endMinute;
     var startHour = data.startHour;
     var startMinute = data.startMinute;
-    var len = data.domain;
-    len = len.length;
-    var actDuration = 20 * len;
+    var maxTime = data.maxTime;
 
     var duration =
       (endHour - (startHour + 1)) * 60 + (60 - startMinute + endMinute);
-    actDuration = duration - actDuration;
-    var status = "hold";
-    if (actDuration > 10) {
-      status = "invalid";
+    actDuration = duration - maxTime;
+    var overSmart = "no";
+    if (actDuration > 5) {
+      overSmart = "yes";
     }
-    await A_Database.findByIdAndUpdate(id, { status: status });
+    await A_Database.findByIdAndUpdate(id, { overSmart: overSmart });
   } catch (error) {
     throw error;
   }

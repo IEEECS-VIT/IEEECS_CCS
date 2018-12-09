@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
       { role: "public" },
       "regno status domain phone"
     );
-    res.render("userList",{data: data});
+    res.render("userList", { data: data });
   } catch (error) {
     return next(error);
   }
@@ -30,9 +30,9 @@ router.get("/userdata/:idd", async (req, res, next) => {
     console.log(idd);
     var data = await A_Database.find(
       { regno: idd },
-      "regno response status"
+      "regno response status overSmart"
     ).populate("response.questionId", "question qDomain answer");
-    res.render("userAns",{data: data});
+    res.render("userAns", { data: data });
   } catch (error) {
     return next(error);
   }
