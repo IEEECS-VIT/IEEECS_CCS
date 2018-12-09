@@ -1,136 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"
+    />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!-- <link rel="stylesheet" href="../node_modules/sal.js/dist/sal.css"> -->
-    <link rel="stylesheet" href="/stylesheets/quiz.css">
+    <link rel="stylesheet" href="/stylesheets/quiz.css" />
     <title>IEEECS Selection | Quiz</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="navbar-fixed">
-        <nav class="nav-extended">
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo left"><img src="/images/IEEE-CS_New.png" alt="logo" class="custom-logo"></a>
-                <div class="right" style="margin-right:10px">
-                    <span class="watch" id="timer"></span>
-                </div>
-            </div>
-            <div class="nav-content">
-                <ul class="tabs tabs-transparent">
-                    <li class="tab"><a class="active" href="#technical_tab">Technical</a></li>
-                    <li class="tab"><a href="#management_tab">Management</a></li>
-                    <li class="tab"><a href="#design_tab">Design</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+      <nav class="nav-extended">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo left"
+            ><img src="/images/IEEE-CS_New.png" alt="logo" class="custom-logo"
+          /></a>
 
-    <div id="technical_tab" class="col s12">
-        <div class="box tech-q">
-            <div class="question">
-                <div class="repeated">
-                    <h5>Question X</h5>
-                    <p class="q">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit nulla sed sit, omnis odio
-                        saepe eos facilis et ipsa quidem, voluptatibus ducimus ab repellat similique doloremque
-                        adipisci unde reprehenderit quis.</p>
-                    <textarea class="materialize-textarea" placeholder="Type your answer" data-length="250"></textarea>
-                </div>
-                <!--  -->
-            </div>
+          <div class="right" style="margin-right:10px">
+            <span class="watch" id="timer"></span>
+          </div>
+
+          <a href="#" data-target="mobile" class="sidenav-trigger"
+            ><i class="fa fa-bars" style="color:white; font-size: 24px"></i
+          ></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#" class="snl">Submit</a></li>
+            <li><a href="#" class="snl">Logout</a></li>
+          </ul>
         </div>
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab">
+              <a class="active" href="#technical_tab">Technical</a>
+            </li>
+            <li class="tab"><a href="#management_tab">Management</a></li>
+            <li class="tab"><a href="#design_tab">Design</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav custom-sidenav" id="mobile">
+      <li class="center">
+        <img
+          src="/images/IEEE-CS_New.png"
+          alt="logo"
+          class="custom-logo mobile-logo"
+        />
+      </li>
+      <li><a href="#" style="color:white">Submit</a></li>
+      <li><a href="#" style="color:white">Logout</a></li>
+    </ul>
+    <div id="technical_tab" class="col s12">
+      <div class="box tech-q">
+        <% var t_count=0; %> <% data.response.forEach((obj) => { %> <%
+        if(obj.questionId.qDomain == "technical") { %>
+        <div class="question">
+          <% t_count++; %>
+          <div class="repeated">
+            <h5>Question <%=t_count%></h5>
+            <p class="q"><%= obj.questionId.question %></p>
+            <textarea
+              class="materialize-textarea"
+              placeholder="Type your answer"
+              data-length="250"
+            ></textarea>
+          </div>
+        </div>
+        <% }}); %> <% if (t_count==0) { %>
+        <p>Not chosen!</p>
+        <% } %>
+      </div>
     </div>
     <div id="management_tab" class="col s12">
-        <div class="box mgmt-q">
-            <div class="question">
-                <div class="repeated">
-                    <h5>Question Y</h5>
-                    <p class="q">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit nulla sed sit, omnis odio saepe
-                        eos facilis et ipsa quidem, voluptatibus ducimus ab repellat similique doloremque adipisci unde
-                        reprehenderit quis.</p>
-                    <textarea class="materialize-textarea" placeholder="Type your answer" data-length="250"></textarea>
-                </div>
-            </div>
+      <div class="box tech-q">
+        <% var m_count=0; %> <% data.response.forEach((obj) => { %> <%
+        if(obj.questionId.qDomain == "management") { %>
+        <div class="question">
+          <% m_count++; %>
+          <div class="repeated">
+            <h5>Question <%=m_count%></h5>
+            <p class="q"><%= obj.questionId.question %></p>
+            <textarea
+              class="materialize-textarea"
+              placeholder="Type your answer"
+              data-length="250"
+            ></textarea>
+          </div>
         </div>
+        <% }}); %> <% if (m_count==0) { %>
+        <p>Not chosen!</p>
+        <% } %>
+      </div>
     </div>
     <div id="design_tab" class="col s12">
-        <div class="box dsgn-q">
-            <div class="question">
-                <div class="repeated">
-                    <h5>Question Z</h5>
-                    <p class="q">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit nulla sed sit, omnis odio saepe
-                        eos facilis et ipsa quidem, voluptatibus ducimus ab repellat similique doloremque adipisci unde
-                        reprehenderit quis.</p>
-                    <textarea class="materialize-textarea" placeholder="Type your answer" data-length="250"></textarea>
-                </div>
-            </div>
+      <div class="box tech-q">
+        <% var d_count=0; %> <% data.response.forEach((obj) => { %> <%
+        if(obj.questionId.qDomain == "design") { %>
+        <div class="question">
+          <% d_count++; %>
+          <div class="repeated">
+            <h5>Question <%=d_count%></h5>
+            <p class="q"><%= obj.questionId.question %></p>
+            <textarea
+              class="materialize-textarea"
+              placeholder="Type your answer"
+              data-length="250"
+            ></textarea>
+          </div>
         </div>
+        <% }}); %> <% if (d_count==0) { %>
+        <p>Not chosen!</p>
+        <% } %>
+      </div>
     </div>
     <div id="modal1" class="modal">
-        <div class="modal-content" style="color:black;">
-            <h4>Time Up!</h4>
-            <p>Unfortunately your time to finish the test is up, your answers will be saved automatically!
-                <br>
-                You will be contacted shortly if you qualify and proceed for further rounds.
-            </p>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="modal-close waves-effect waves-green btn-flat">Finish</a>
-        </div>
+      <div class="modal-content" style="color:black;">
+        <h4>Time Up!</h4>
+        <p>
+          Unfortunately your time to finish the test is up, your answers will be
+          saved automatically! <br />
+          You will be contacted shortly if you qualify and proceed for further
+          rounds.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat"
+          >Submit & Logout</a
+        >
+      </div>
     </div>
 
-
-
     <script>
-        $(document).ready(function () {
-            $('.tabs').tabs({
-                // duration: 200,
-                // swipeable: true,
-                // responsiveThreshold: 768.1,
-            });
-            $('.modal').modal({
-                opacity: 0.8,
-                dismissible: false,
-                startingTop: '20%',
-                // onCloseEnd
-            });
-            $('.materialize-textarea').val('');
-            M.textareaAutoResize($('.materialize-textarea'));
-            $('.materialize-textarea').characterCounter();
+      $(document).ready(function() {
+        $(".tabs").tabs({
+          // duration: 200,
+          // swipeable: true,
+          // responsiveThreshold: 768.1,
         });
+        $(".sidenav").sidenav();
+        $(".modal").modal({
+          opacity: 0.8,
+          dismissible: false,
+          startingTop: "20%"
+          // onCloseEnd
+        });
+        $(".materialize-textarea").val("");
+        M.textareaAutoResize($(".materialize-textarea"));
+        $(".materialize-textarea").characterCounter();
+      });
     </script>
     <script>
-        var sec = 6000;
-        var time = setInterval(myTimer, 1000);
+      var sec = 6000;
+      var time = setInterval(myTimer, 1000);
 
-        function myTimer() {
-            document.getElementById('timer').innerHTML = parseInt(sec / 60) + "min " + (sec % 60) + "sec left";
-            sec--;
-            if (sec == -1) {
-                clearInterval(time);
-                // alert("Time out!! :(");
-                $('.modal').modal('open');
-                $('modal').closeModal();
-            }
+      function myTimer() {
+        document.getElementById("timer").innerHTML =
+          parseInt(sec / 60) + "min " + (sec % 60) + "sec left";
+        sec--;
+        if (sec == -1) {
+          clearInterval(time);
+          // alert("Time out!! :(");
+          $(".modal").modal("open");
+          $("modal").closeModal();
         }
+      }
     </script>
-    <!-- <script src="../node_modules/sal.js/dist/sal.js"></script>
-    <script>
-        sal({
-            once: true,
-        });
-    </script> -->
-</body>
-
+    <!--
+      <script src="../node_modules/sal.js/dist/sal.js"></script>
+      <script>
+          sal({
+              once: true,
+          });
+      </script>
+    -->
+  </body>
 </html>
