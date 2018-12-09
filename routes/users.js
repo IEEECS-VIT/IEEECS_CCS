@@ -59,7 +59,7 @@ router.post("/domain", auth.isUser, async (req, res, next) => {
     var startHour = date.getHours();
     var startMinute = date.getMinutes();
     var domain = req.body.domain;
-    var maxTime = domain.length * 10;
+    var maxTime = domain.length * 600;
     console.log(req.user.id);
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: domain,
