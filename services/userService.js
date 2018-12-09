@@ -27,15 +27,13 @@ module.exports.setQuestions = async id => {
 module.exports.timeStatus = async id => {
   try {
     const data = await A_Database.findById(id, {});
-    var endHour = data.endHour;
-    var endMinute = data.endMinute;
-    var startHour = data.startHour;
-    var startMinute = data.startMinute;
+    var startTime = data.startTime;
+    var endTime = data.endTime;
     var maxTime = data.maxTime;
 
-    var duration =
-      (endHour - (startHour + 1)) * 60 + (60 - startMinute + endMinute);
-    actDuration = duration - maxTime;
+    var duration = endTime - startTime;
+    var actDuration = duration - maxTime;
+    actDuration = actDuration / 60;
     var overSmart = "no";
     if (actDuration > 5) {
       overSmart = "yes";

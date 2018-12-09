@@ -50,10 +50,8 @@ const applicantSchema = new mongoose.Schema({
     default: "no"
   },
   check: String,
-  startHour: Number,
-  startMinute: Number,
-  endHour: Number,
-  endMinute: Number,
+  startTime: Number,
+  endTime: Number,
   maxTime: Number
 });
 

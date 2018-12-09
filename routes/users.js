@@ -56,15 +56,13 @@ router.get("/instructions", auth.isUser, (req, res, next) => {
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
-    var startHour = date.getHours();
-    var startMinute = date.getMinutes();
+    var startTime = date.now();
     var domain = req.body.domain;
     var maxTime = domain.length * 600;
     console.log(req.user.id);
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: domain,
-      startHour: startHour,
-      startMinute: startMinute,
+      startTime: startTime,
       maxTime: maxTime
     });
     // res.redirect
@@ -104,8 +102,7 @@ router.post("/question", auth.isUser, async (req, res, next) => {
   try {
     const solutions = req.body.solutions;
     console.log(solutions);
-    var endHour = date.getHours();
-    var endMinute = date.getDate();
+    var endTime = date.now();
     let user = await A_Database.findById(req.user.id);
     console.log(user);
     let responseToUpdate = user.response;
@@ -117,8 +114,7 @@ router.post("/question", auth.isUser, async (req, res, next) => {
       });
     });
     user.response = responseToUpdate;
-    user.endHour = endHour;
-    user.endMinute = endMinute;
+    user.endTime = endTime;
     await user.save();
 
     await userService.timeStatus(req.user.id);
