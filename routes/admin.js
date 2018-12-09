@@ -14,9 +14,9 @@ router.get("/", async (req, res, next) => {
   try {
     var data = await A_Database.find(
       { role: "public" },
-      "name regno status domain phone"
+      "regno status domain phone"
     );
-    res.render("userList", { data: data });
+    res.json(data);
   } catch (error) {
     return next(error);
   }
@@ -32,7 +32,7 @@ router.get("/userdata/:idd", async (req, res, next) => {
       { regno: idd },
       "regno response status"
     ).populate("response.questionId", "question qDomain answer");
-    res.render("userAns", { data: data });
+    res.json(data);
   } catch (error) {
     return next(error);
   }
