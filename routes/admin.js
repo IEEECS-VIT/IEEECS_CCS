@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
       { role: "public" },
       "regno status domain phone"
     );
-    res.json(data);
+    res.render("userList",{data: data});
   } catch (error) {
     return next(error);
   }
@@ -32,7 +32,7 @@ router.get("/userdata/:idd", async (req, res, next) => {
       { regno: idd },
       "regno response status"
     ).populate("response.questionId", "question qDomain answer");
-    res.json(data);
+    res.render("userAns",{data: data});
   } catch (error) {
     return next(error);
   }
