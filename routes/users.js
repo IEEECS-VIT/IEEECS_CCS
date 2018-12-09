@@ -16,7 +16,7 @@ router.post(
   "/login",
   passport.authenticate("login", {
     successRedirect: "/user-role",
-    failureRedirect: "/fail",
+    failureRedirect: "/",
     failureFlash: true
   })
 );
@@ -45,33 +45,14 @@ router.get("/user-role", (req, res, next) => {
   }
 });
 
-// router.get("/", (req, res, next) => {
-//   try {
-//     if (req.user.role === "admin") {
-//       res.redirect("/admin");
-//     }
-//     res.send("User router");
-//   } catch (error) {
-//     next();
-//   }
-// });
-
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
-router.get("/fail", (req, res, next) => {
-  res.send("Failed");
-});
-
 router.get("/instructions", auth.isUser, (req, res, next) => {
   res.render("instructions", { user: req.user });
 });
-
-// router.get("/loggedout", (req, res, next) => {
-//   res.send("Logged logout");
-// });
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
@@ -146,13 +127,5 @@ router.post("/question", auth.isUser, async (req, res, next) => {
     return next(error);
   }
 });
-
-// router.get("/getdata", async (req, res, next) => {
-//   const q = await A_Database.find({}).populate(
-//     "response.questionId",
-//     "question qDomain userSolution"
-//   );
-//   res.json(q);
-// });
 
 module.exports = router;

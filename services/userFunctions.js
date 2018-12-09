@@ -29,7 +29,7 @@ module.exports.addUser = userDetails => {
   return new Promise((resolve, reject) => {
     try {
       User.findOne({
-        email: userDetails.email
+        regno: userDetails.regno
       })
         .exec()
         .then(user => {

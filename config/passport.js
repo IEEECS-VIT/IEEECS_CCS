@@ -20,14 +20,14 @@ module.exports = passport => {
     "login",
     new passportStrategy(
       {
-        usernameField: "email",
+        usernameField: "regno",
         passwordField: "password",
         passReqToCallback: true
       },
-      (req, email, password, done) => {
+      (req, regno, password, done) => {
         process.nextTick(() => {
           User.findOne({
-            email: email
+            regno: regno
           })
             .exec()
             .then(user => {
