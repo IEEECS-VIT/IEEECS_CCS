@@ -23,11 +23,11 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">LOGOUT</a></li>
+                <li><a href="/logout">LOGOUT</a></li>
               </ul>
     
               <ul class="side-nav" id="mobile-demo">
-                <li><a href="#">LOGOUT</a></li>
+                <li><a href="/logout">LOGOUT</a></li>
                   </ul>
         </div>
         <div class="nav-content">
@@ -50,11 +50,11 @@
 TECHNICAL
     <div class="container white-text">
         <% var t_count=0; %>
-        <% data.response.forEach((obj) => { %>
+        <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "technical") { %>
             <% t_count++; %>
             <p><h5>Question:
-                <%=t_count%>
+                <%= t_count%>
             </h5></p>
             <p><%= obj.questionId.question %></p>
         <p><h5>Answer:</h5></p>
@@ -66,45 +66,8 @@ TECHNICAL
         <p class="white-text">Not chosen!</p>
         <% } %>
     </div>
+    </div>
 
-
-        <div class="container">
-
-<a class="waves-effect waves-light btn modal-trigger green black-text " href="#modal1">ACCEPT</a>
-<div id="modal1" class="modal indigo lighten-5">
-<div class="modal-content">
-<p>Are you sure you want to proceed?</p>
-</div>
-<div class="modal-footer indigo lighten-5">
-<a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="accept">YES</a>
-</div>
-</div>
-
-
-<a class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#modal2">WAITING</a>
-<div id="modal2" class="modal indigo lighten-5">
-<div class="modal-content">
-  <p>Are you sure you want to proceed?</p>
-</div>
-<div class="modal-footer indigo lighten-5">
-  <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="waiting">YES</a>
-</div>
-</div>
-    
-
-<a class="waves-effect waves-light btn modal-trigger red black-text " href="#modal3">REJECT</a>
-<div id="modal3" class="modal indigo lighten-5">
-<div class="modal-content ">      
-<p>Are you sure you want to proceed?</p>
-</div>
-<div class="modal-footer indigo lighten-5">
-<a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="reject">YES</a>
-</div>
-</div>
-
-
-  </div>
-  </div>
 <!-- END Technical -->
 
 
@@ -114,11 +77,11 @@ TECHNICAL
     MANAGEMENT
     <div class="container white-text">
         <% var m_count=0; %>
-        <% data.response.forEach((obj) => { %>
+        <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "management") { %>
             <% m_count++; %>
             <p><h5>Question:
-                <%=m_count%>
+                <%= m_count%>
             </h5></p>
             <p><%= obj.questionId.question %></p>
         <p><h5>Answer:</h5></p>
@@ -130,44 +93,9 @@ TECHNICAL
         <p class="white-text">Not chosen!</p>
         <% } %>
     </div>
-    
-            <div class="container">
-    
-    <a class="waves-effect waves-light btn modal-trigger green black-text " href="#modal1">ACCEPT</a>
-    <div id="modal1" class="modal indigo lighten-5">
-    <div class="modal-content">
-    <p>Are you sure you want to proceed?</p>
-    </div>
-    <div class="modal-footer indigo lighten-5">
-    <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="accept">YES</a>
-    </div>
+
     </div>
     
-    
-    <a class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#modal2">WAITING</a>
-    <div id="modal2" class="modal indigo lighten-5">
-    <div class="modal-content">
-      <p>Are you sure you want to proceed?</p>
-    </div>
-    <div class="modal-footer indigo lighten-5">
-      <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="waiting">YES</a>
-    </div>
-    </div>
-        
-    
-    <a class="waves-effect waves-light btn modal-trigger red black-text " href="#modal3">REJECT</a>
-    <div id="modal3" class="modal indigo lighten-5">
-    <div class="modal-content ">      
-    <p>Are you sure you want to proceed?</p>
-    </div>
-    <div class="modal-footer indigo lighten-5">
-    <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="reject">YES</a>
-    </div>
-    </div>
-    
-    
-      </div>
-      </div>
 <!-- END Management -->
 
 <!-- Design -->
@@ -176,11 +104,11 @@ TECHNICAL
     DESIGN
     <div class="container white-text">
         <% var d_count=0; %>
-        <% data.response.forEach((obj) => { %>
+        <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "design") { %>
             <% d_count++; %>
             <p><h5>Question:
-                <%=d_count%>
+                <%= d_count%>
             </h5></p>
             <p><%= obj.questionId.question %></p>
         <p><h5>Answer:</h5></p>
@@ -192,46 +120,53 @@ TECHNICAL
         <p class="white-text">Not chosen!</p>
         <% } %>
     </div>
-    
-            <div class="container">
-    
-    <a class="waves-effect waves-light btn modal-trigger green black-text " href="#modal1">ACCEPT</a>
-    <div id="modal1" class="modal indigo lighten-5">
-    <div class="modal-content">
-    <p>Are you sure you want to proceed?</p>
-    </div>
-    <div class="modal-footer indigo lighten-5">
-    <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="accept">YES</a>
-    </div>
-    </div>
-    
-    
-    <a class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#modal2">WAITING</a>
-    <div id="modal2" class="modal indigo lighten-5">
-    <div class="modal-content">
-      <p>Are you sure you want to proceed?</p>
-    </div>
-    <div class="modal-footer indigo lighten-5">
-      <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="waiting">YES</a>
-    </div>
-    </div>
-        
-    
-    <a class="waves-effect waves-light btn modal-trigger red black-text " href="#modal3">REJECT</a>
-    <div id="modal3" class="modal indigo lighten-5">
-    <div class="modal-content ">      
-    <p>Are you sure you want to proceed?</p>
-    </div>
-    <div class="modal-footer indigo lighten-5">
-    <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="reject">YES</a>
-    </div>
-    </div>
-    
-    
-      </div>
+  
       </div>
 <!-- END Design -->
                 
+
+
+<footer class="page-footer myfooter">
+        <div class="container">
+            <a class="waves-effect waves-light btn modal-trigger green black-text " href="#dmodal1">ACCEPT</a>
+            <div id="dmodal1" class="modal indigo lighten-5">
+            <div class="modal-content">
+            <p>Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer indigo lighten-5">
+            <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="accept">YES</a>
+            </div>
+            </div>
+            
+            
+            <a class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#dmodal2">WAITING</a>
+            <div id="dmodal2" class="modal indigo lighten-5">
+            <div class="modal-content">
+              <p>Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer indigo lighten-5">
+              <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="waiting">YES</a>
+            </div>
+            </div>
+                
+            
+            <a class="waves-effect waves-light btn modal-trigger red black-text " href="#dmodal3">REJECT</a>
+            <div id="dmodal3" class="modal indigo lighten-5">
+            <div class="modal-content ">      
+            <p>Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer indigo lighten-5">
+            <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="reject">YES</a>
+            </div>
+            </div>
+            
+        </div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        
+      </footer>
+    
                <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>

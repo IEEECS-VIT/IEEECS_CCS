@@ -7,7 +7,10 @@ img{
     height: 70px;
 
 }
-
+.myfooter {
+    background-color: #202020;
+    
+}
 .nav{
     background-color: #202020;
     height: 80px;
@@ -85,10 +88,18 @@ li{
 }
 
 
+.myfooter {
+    background-color: #202020;
+    
+}
+
 @media( min-width : 340px)
 {
     .collapsible-header{
     font-size: 17px;
+    }
+    .modal{
+        width: 400px;
     }
 
 } 

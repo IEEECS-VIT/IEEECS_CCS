@@ -62,13 +62,15 @@
 
 
                               <!-- PRINT THE TABLE DATA -->
+                              <% var count=1; %>
 
                               <% data.forEach(function(student) { %>
                                 <li>
-                                      <div class="collapsible-header center">
+                                    <% count++; %>
+                                      <div id="<%= count %>" class="collapsible-header center">
                                           <div class="row">
                                               <div class="col mys2"><%= student.regno %></div>
-                                              <div class="col mys3">blah blah</div>
+                                              <div class="col mys3"><%= student.name %></div>
                                               <div class="col mys2">1234567890</div>
                                               <div class="col mys3">
                                                  <% if(student.overSmart == 'yes') { %>
@@ -102,7 +104,7 @@
                                                         <% } %>
 
                                                   </p>
-                                          <p><a  href="/userdata/:idd">View answers</a></p>
+                                          <p> <a  href="/admin/userdata/<%= student.regno %>">View answers</a> </p>
                                            
                                           </span>
                                       </div>
@@ -116,12 +118,16 @@
                                             <div class="col mys2"><b>Reg No.</b></div>
                                             <div class="col mys3"><b>Name</b></div>
                                             <div class="col mys2"><b>Phone no.</b></div>
-                                            <div class="col mys3"><b>Evaluated by</b></div>
+                                            <div class="col mys3"><b>Oversmart</b></div>
                                             <div class="col mys2"><b>Status</b></div>
                                         </div>
                                     </div>
                                     
                                 </li> 
+
+
+
+  
 
                         </ul>
                     </div>

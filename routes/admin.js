@@ -33,6 +33,7 @@ router.get("/userdata/:idd", async (req, res, next) => {
       "regno response status overSmart"
     ).populate("response.questionId", "question qDomain answer");
     res.render("userAns", { data: data });
+    // res.json(data);
   } catch (error) {
     return next(error);
   }
