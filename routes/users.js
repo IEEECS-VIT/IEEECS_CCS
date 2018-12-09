@@ -50,25 +50,24 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.get("/instructions", auth.isUser, (req, res, next) => {
-  res.render("instructions", { user: req.user });
-});
+router.get(
+  "/instructions",
+  auth.isUser,
+  auth.isAttempt,
+  async (req, res, next) => {
+    res.render("instructions", { user: req.user });
+  }
+);
 
-router.post("/domain", auth.isUser, async (req, res, next) => {
+router.post("/domain", auth.isUser, auth.isAttempt, async (req, res, next) => {
   try {
-    var cSubmitted = await A_Database.findById(req.user.id, "submitted");
-    cSubmitted = cSubmitted.submitted;
-    if (cSubmitted) {
-      return res.json({ success: false });
-    }
     var startTime = Date.now();
     var domain = req.body.domain;
     var maxTime = domain.length * 600;
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: domain,
       startTime: startTime,
-      maxTime: maxTime,
-      submitted: true
+      maxTime: maxTime
     });
     // res.redirect
     res.json({ success: true });
@@ -77,7 +76,7 @@ router.post("/domain", auth.isUser, async (req, res, next) => {
   }
 });
 
-router.get("/question", auth.isUser, async (req, res, next) => {
+router.get("/question", auth.isUser, auth.isAttempt, async (req, res, next) => {
   try {
     var stuff = await userService.setQuestions(req.user.id);
     console.log(stuff);
@@ -89,7 +88,8 @@ router.get("/question", auth.isUser, async (req, res, next) => {
       };
     });
     await A_Database.findByIdAndUpdate(req.user.id, {
-      response: questions
+      response: questions,
+      attempted: true
     });
     console.log(req.user.id);
     const data = await A_Database.find(
@@ -103,7 +103,7 @@ router.get("/question", auth.isUser, async (req, res, next) => {
   }
 });
 
-router.post("/question", auth.isUser, async (req, res, next) => {
+router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
   try {
     const solutions = req.body.solutions;
     console.log(solutions);
@@ -119,11 +119,12 @@ router.post("/question", auth.isUser, async (req, res, next) => {
       });
     });
     user.response = responseToUpdate;
+    user.submitted = true;
     user.endTime = endTime;
     await user.save();
 
     await userService.timeStatus(req.user.id);
-    res.json({success:true});
+    res.json({ success: true });
   } catch (error) {
     return next(error);
   }

@@ -55,8 +55,13 @@ const applicantSchema = new mongoose.Schema({
   maxTime: Number,
   submitted: {
     type: Boolean,
-    enum: ["true", "false"],
-    default: "false"
+    enum: [true, false],
+    default: false
+  },
+  attempted: {
+    type: Boolean,
+    enum: [true, false],
+    default: false
   }
 });
 
