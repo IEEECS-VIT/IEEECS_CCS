@@ -123,7 +123,7 @@ router.post("/question", auth.isUser, async (req, res, next) => {
     await user.save();
 
     await userService.timeStatus(req.user.id);
-    res.send("done!");
+    res.json({success:true});
   } catch (error) {
     return next(error);
   }
