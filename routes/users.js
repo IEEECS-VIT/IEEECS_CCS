@@ -113,7 +113,6 @@ router.get("/question", auth.isUser, async (req, res, next) => {
       "response domain maxTime"
     ).populate("response.questionId", "question qDomain");
 
-    console.log(data);
     res.render("quiz", { data: data[0] });
   } catch (error) {
     return next(error);

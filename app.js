@@ -11,7 +11,6 @@ const session = require("cookie-session");
 const flash = require("connect-flash");
 require("dotenv").config();
 
-
 //setting Database
 mongoose.connect(
   process.env.MONGO_URI,
@@ -35,7 +34,7 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -71,7 +70,7 @@ require("./config/passport")(passport);
 //   qid: 1007,
 //   question: "name your favourite software",
 //   answer: "This is the answer",
-//   qDomain: "management"
+//   qDomain: "design"
 // });
 // stuff.save(function(err, Q_Database) {
 //   if (err) {
