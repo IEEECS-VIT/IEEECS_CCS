@@ -77,12 +77,14 @@ router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
     var startHour = date.getHours();
     var startMinute = date.getMinutes();
+    var domain = req.body.domain;
+    var maxTime = domain.length * 10;
     console.log(req.user.id);
-    console.log(req.body);
     await A_Database.findByIdAndUpdate(req.user.id, {
-      domain: req.body.domain,
+      domain: domain,
       startHour: startHour,
-      startMinute: startMinute
+      startMinute: startMinute,
+      maxTime: maxTime
     });
     // res.redirect
     res.json({ succecc: true });
@@ -108,8 +110,9 @@ router.get("/question", auth.isUser, async (req, res, next) => {
     console.log(req.user.id);
     const data = await A_Database.find(
       { _id: req.user.id },
-      "response domain"
+      "response domain maxTime"
     ).populate("response.questionId", "question qDomain");
+    // res.json(data);
     res.render("quiz", { data });
   } catch (error) {
     return next(error);

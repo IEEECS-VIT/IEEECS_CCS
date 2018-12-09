@@ -48,7 +48,8 @@ const applicantSchema = new mongoose.Schema({
   startHour: Number,
   startMinute: Number,
   endHour: Number,
-  endMinute: Number
+  endMinute: Number,
+  maxTime: Number
 });
 
 applicantSchema.methods.generateHash = password => {
