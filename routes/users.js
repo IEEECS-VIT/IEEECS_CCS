@@ -56,10 +56,9 @@ router.get("/instructions", auth.isUser, (req, res, next) => {
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
-    var startTime = date.now();
+    var startTime = Date.now();
     var domain = req.body.domain;
     var maxTime = domain.length * 600;
-    console.log(req.user.id);
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: domain,
       startTime: startTime,
@@ -102,7 +101,7 @@ router.post("/question", auth.isUser, async (req, res, next) => {
   try {
     const solutions = req.body.solutions;
     console.log(solutions);
-    var endTime = date.now();
+    var endTime = Date.now();
     let user = await A_Database.findById(req.user.id);
     console.log(user);
     let responseToUpdate = user.response;

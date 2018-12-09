@@ -70,7 +70,7 @@ require("./config/passport")(passport);
 //   qid: 1007,
 //   question: "name your favourite software",
 //   answer: "This is the answer",
-//   qDomain: "technical"
+//   qDomain: "management"
 // });
 // stuff.save(function(err, Q_Database) {
 //   if (err) {
