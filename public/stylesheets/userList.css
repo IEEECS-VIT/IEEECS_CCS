@@ -1,0 +1,94 @@
+body{
+    background-color: #202020;
+    /* padding-left: 10%;
+    padding-right:10%; */
+}
+img{
+    height: 70px;
+
+}
+
+.nav{
+    background-color: #202020;
+    height: 80px;
+}
+#logout{
+    border-radius: 20px;
+}
+.color1{
+    background-color: #3f3d56;
+    border-radius: 40px;
+}
+.color2{
+    background-color: #575577;
+}
+
+.tableheading{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.tableending{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.collapsible-header{
+    padding-top: 14px;
+    
+}
+
+.collapsible-body{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    
+}
+.modal{
+    width: 200px;
+}
+.mys2{
+    width:15%;
+}
+.mys3{
+    width: 25%;
+}
+main{
+    width: 100%;
+
+}
+#card1{
+    background-color: #202020;
+    overflow-x: auto;
+}
+#card2{
+    width: 1160px;
+    margin:auto;
+
+}
+
+.mybox{
+    width:100%;
+    height:10%;
+    border-radius: 5%;
+    padding: .1px;
+}
+.mybox2{
+    width: 10%;
+}
+.collapsible{
+    width: 1109px;
+}
+
+li{
+    border-radius: 30px;
+}
+.navcolor:hover{
+    opacity: .9;
+}
+
+
+@media( min-width : 340px)
+{
+    .collapsible-header{
+    font-size: 17px;
+    }
+
+} 

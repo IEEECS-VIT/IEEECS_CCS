@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+      <link rel="stylesheet" href="/stylesheets/userList.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>IEEE CS</title>
+    </head>
+
+    <body>
+      <div>&nbsp;</div>
+        
+
+
+      <nav class="nav">
+        <div class="nav-wrapper ">
+          <a href="#" class="brand-logo center"> <img src="/images/IEEE-CS_New.png"></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="/logout">Logout</a></li>
+              </ul>
+        </div>
+</nav>
+
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+
+        
+        
+        <div id="card1" class="card color2" > 
+                      <div id="card2" class=" card  color1">
+                        <div class="card-content">
+                          <span class="card-title white-text center"><b>Student Details</b></span>
+                          <div>&nbsp;</div>
+                      
+                          <ul class="collapsible popout">
+                        
+                              <li >
+                                  <div class="collapsible-header center tableheading indigo lighten-5">
+                                    <div class="row ">
+                                          <div class="col mys2"><b>Reg No.</b></div>
+                                          <div class="col mys3"><b>Name</b></div>
+                                          <div class="col mys2"><b>Phone no.</b></div>
+                                          <div class="col mys3"><b>Evaluated by</b></div>
+                                          <div class="col mys2"><b>Status</b></div>
+                                          <!-- <div class="col s2"><b>Domain</b></div> -->
+                                     </div>
+                                  </div>
+                                  
+                              </li> 
+
+
+                              <!-- PRINT THE TABLE DATA -->
+
+                              <% data.forEach(function(student) { %>
+                                <li>
+                                      <div class="collapsible-header center">
+                                          <div class="row">
+                                              <div class="col mys2"><%= student.regno %></div>
+                                              <div class="col mys3">blah blah</div>
+                                              <div class="col mys2">1234567890</div>
+                                              <div class="col mys3">evalname</div>
+                                              <% if(student.status == 'approve') { %>
+                                              <div class="col mys2"><a class="waves-effect waves-light btn green darken-1 black-text mybox">ACCEPT</a></div>
+                                              <% } %>
+                                              <% if(student.status == 'reject') { %>
+                                                  <div class="col mys2"><a class="waves-effect waves-light btn red black-text mybox">REJECTED</a></div>
+                                              <% } %>
+                                              <% if(student.status == 'hold') { %>
+                                                <div class="col mys2"><a class="waves-effect waves-light btn yellow darken-1 black-text mybox">HOLD...</a></div>
+                                            <% } %> 
+                                              <% if(student.status == 'invalid') { %>
+                                                  <div class="col mys2"><a class="waves-effect waves-light btn orange black-text mybox">INVALID</a></div>
+                                              <% } %>
+                                              
+                                          </div>
+                                      </div>
+                                      <div class="collapsible-body indigo lighten-5">
+                                          <span>
+                      
+                                              <p><b><h5>More details:</h5></b></p>
+                                              <p><b>Domain:</b>
+                                                  
+                                                      domain
+                                                  </p>
+                                              <p><b>Time Taken:</b> time</p>
+                                          <p><a  href="/userdata/:idd">View answers</a></p>
+                                           
+                                          </span>
+                                      </div>
+                                  </li>
+                                  <% }); %>
+                            <!-- END OF THE ROW  -->
+
+                            <li>
+                                    <div class="collapsible-header center tableending indigo lighten-5">
+                                        <div class="row">
+                                            <div class="col mys2"><b>Reg No.</b></div>
+                                            <div class="col mys3"><b>Name</b></div>
+                                            <div class="col mys2"><b>Phone no.</b></div>
+                                            <div class="col mys3"><b>Evaluated by</b></div>
+                                            <div class="col mys2"><b>Status</b></div>
+                                        </div>
+                                    </div>
+                                    
+                                </li> 
+
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>&nbsp;</div>
+                <div>&nbsp;</div>
+        
+            </div>
+
+            
+        
+
+
+         <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+      <script>
+         $(document).ready(function(){
+         $('.collapsible').collapsible();
+         });
+
+          $(document).ready(function(){
+    
+    $(".button-collapse").sideNav();
+    $('.parallax').parallax();
+
+});
+
+       
+      </script>
+    </body>
+</html>
