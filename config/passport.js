@@ -31,7 +31,6 @@ module.exports = passport => {
           })
             .exec()
             .then(user => {
-              console.log("hhelloee");
               if (!user) {
                 console.log("wrong id");
                 return done(null, false, {

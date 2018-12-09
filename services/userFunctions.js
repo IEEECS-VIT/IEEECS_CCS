@@ -25,7 +25,6 @@ module.exports.getUsers = () => {
  * @param {Object}
  */
 module.exports.addUser = userDetails => {
-  // console.log(userDetails);
   return new Promise((resolve, reject) => {
     try {
       User.findOne({

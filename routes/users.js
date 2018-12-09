@@ -56,16 +56,22 @@ router.get("/instructions", auth.isUser, (req, res, next) => {
 
 router.post("/domain", auth.isUser, async (req, res, next) => {
   try {
+    var cSubmitted = await A_Database.findById(req.user.id, "submitted");
+    cSubmitted = cSubmitted.submitted;
+    if (cSubmitted) {
+      return res.json({ success: false });
+    }
     var startTime = Date.now();
     var domain = req.body.domain;
     var maxTime = domain.length * 600;
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: domain,
       startTime: startTime,
-      maxTime: maxTime
+      maxTime: maxTime,
+      submitted: true
     });
     // res.redirect
-    res.json({ succecc: true });
+    res.json({ success: true });
   } catch (error) {
     return next(error);
   }

@@ -52,7 +52,12 @@ const applicantSchema = new mongoose.Schema({
   check: String,
   startTime: Number,
   endTime: Number,
-  maxTime: Number
+  maxTime: Number,
+  submitted: {
+    type: Boolean,
+    enum: ["true", "false"],
+    default: "false"
+  }
 });
 
 applicantSchema.methods.generateHash = password => {
