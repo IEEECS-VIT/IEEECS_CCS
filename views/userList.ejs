@@ -42,6 +42,17 @@
                       <div id="card2" class=" card  color1">
                         <div class="card-content">
                           <span class="card-title white-text center"><b>Student Details</b></span>
+                          <!-- <nav>
+                                <div class="nav-wrapper color2">
+                                  <form>
+                                    <div class="input-field">
+                                      <input id="search" type="search" required>
+                                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                      <i class="material-icons">close</i>
+                                    </div>
+                                  </form>
+                                </div>
+                              </nav> -->
                           <div>&nbsp;</div>
                       
                           <ul class="collapsible popout">
@@ -62,12 +73,9 @@
 
 
                               <!-- PRINT THE TABLE DATA -->
-                              <% var count=1; %>
-                              <% data.sort(function(a,b){return a.regno-b.regno}); %>
                               <% data.forEach(function(student) { %>
                                 <li>
-                                    <% count++; %>
-                                      <div id="<%= count %>" class="collapsible-header center">
+                                      <div id="<%= student.regno %>" class="collapsible-header center">
                                           <div class="row">
                                               <div class="col mys2"><%= student.regno %></div>
                                               <div class="col mys3"><%= student.name %></div>
