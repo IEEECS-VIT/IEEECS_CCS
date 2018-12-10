@@ -100,7 +100,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
   <script>
-    var selected = ["test"];
+    // var selected = ['test', ];
     $(document).ready(function() {
       console.log("here");
 
@@ -108,8 +108,9 @@
       // var design = $('.d').val();
     });
 
+    var domain = [];
+
     function displayDomains() {
-      var domain = [];
       console.log("Hello");
       if ($(".t").is(":checked")) {
         console.log("hello");
@@ -149,5 +150,13 @@
     //     console.log(selected);
     //     // console.log(stringArray);
     // }
+    function checkDomain() {
+      var numOfDom = domain.length;
+      // if ()
+      console.log(numOfDom);
+      if (numOfDom == 0) {
+        alert("Please select a domain!");
+      }
+    }
   </script>
 </html>
