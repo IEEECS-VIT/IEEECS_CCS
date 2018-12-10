@@ -73,7 +73,7 @@
       </div>
       <% }}); %>
       <% if (t_count==0) { %>
-      <h3 style="text-align:center;">You have not chosen this domain...</h3>
+      <h5 style="text-align:center;">You have not chosen this domain...</h5>
       <% } %>
     </div>
   </div>
@@ -100,7 +100,7 @@
       </div>
       <% }}); %>
       <% if (m_count==0) { %>
-      <h3 style="text-align:center;">You have not chosen this domain...</h3>
+      <h5 style="text-align:center;">You have not chosen this domain...</h5>
       <% } %>
     </div>
   </div>
@@ -127,7 +127,7 @@
       </div>
       <% }}); %>
       <% if (d_count==0) { %>
-      <h3 style="text-align:center;">You have not chosen this domain...</h3>
+      <h5 style="text-align:center;">You have not chosen this domain...</h5>
       <% } %>
     </div>
   </div>
@@ -218,12 +218,20 @@
         submit();
       }
     }
+
+    window.onbeforeunload = confirmExit;
+
+    function confirmExit(event) {
+      // return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+      // confirm()
+      event.returnValue = "Sure?";
+    }
   </script>
   <!--
       <script src="../node_modules/sal.js/dist/sal.js"></script>
       <script>
           sal({
-              once: true,
+              once: true,0
           });
       </script>
     -->

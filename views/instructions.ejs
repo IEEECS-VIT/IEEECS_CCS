@@ -112,7 +112,8 @@
                 domain: domain
             },
             success: function (question) {
-                window.location.href = "/question";
+                window.open("/question");
+
             },
             error: function (msg) {
                 console.log(msg);

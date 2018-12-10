@@ -38,22 +38,24 @@
                     <h4 class="form-heading">REGISTER</h4>
                     <ul class="">
                         <li class="input-field">
-                            <label for="">Name</label><input type="text" class="validate" name="name" pattern="[a-zA-Z][a-zA-Z ]+"
-                                placeholder="Jhon Doe" required />
+                            <label for="name">Name</label><input type="text" id="name" class="validate" name="name"
+                                pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" required />
                         </li>
                         <li class="input-field">
-                            <label for="">Registration No.</label><input type="text" class="validate" name="regno"
-                                pattern="18[A-Z]{3,}[0-9]{4,}" placeholder="18BXX0666" required />
+                            <label for="reg">Registration No.</label><input type="text" id="reg" class="validate" name="regno"
+                                pattern="18[A-Z]{3}[0-9]{3}[0-9]$" required />
                         </li>
                         <li class="input-field">
-                            <label for="">Email</label><input type="email" name="email" class="validate" required />
-                        </li>
-                        <li class="input-field">
-                            <label for="">Phone No.</label><input type="number" name="phone" class="validate" pattern="[0-9]{10,}"
+                            <label for="eml">Email</label><input id="eml" type="email" name="email" class="validate"
                                 required />
                         </li>
                         <li class="input-field">
-                            <label for="">Password</label><input type="password" name="password" class="validate" />
+                            <label for="pno">Phone No.</label><input id="pno" type="number" name="phone" class="validate"
+                                pattern="[0-9]{9}[0-9]$" required />
+                        </li>
+                        <li class="input-field">
+                            <label for="pwd">Password</label><input id="pwd" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                                name="password" class="validate" />
                         </li>
                         <li class="input-field gender">
                             <p>
@@ -69,6 +71,9 @@
                                 </label>
                             </p>
                         </li>
+                        <p>
+                            <%=message%>
+                        </p>
                         <li class="button-placement custom-button">
                             <button type="submit" class="waves-effect waves btn-flat" value="Submit" onclick="return validateform()">SUBMIT</button>
                         </li>
