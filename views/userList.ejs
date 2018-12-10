@@ -63,7 +63,6 @@
 
                               <!-- PRINT THE TABLE DATA -->
                               <% var count=1; %>
-
                               <% data.forEach(function(student) { %>
                                 <li>
                                     <% count++; %>
@@ -80,7 +79,7 @@
                                                 <% } %> 
 
                                               </div>
-                                              <% if(student.status == 'approve') { %>
+                                              <% if(student.status == 'approved') { %>
                                               <div class="col mys2"><a class="waves-effect waves-light btn green darken-1 black-text mybox">ACCEPT</a></div>
                                               <% } %>
                                               <% if(student.status == 'reject') { %>

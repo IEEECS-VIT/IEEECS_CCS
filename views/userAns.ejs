@@ -47,17 +47,17 @@
 <!-- Technical -->
 <div id="tech" class="col s12">
 
-TECHNICAL
     <div class="container white-text">
         <% var t_count=0; %>
         <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "technical") { %>
             <% t_count++; %>
-            <p><h5>Question:
-                <%= t_count%>
+            <p><h5>Question 
+                <%= t_count%> 
             </h5></p>
             <p><%= obj.questionId.question %></p>
-        <p><h5>Answer:</h5></p>
+        <p><h5>Answer
+                <%= t_count%> </h5></p>
         <p>
             <%= obj.questionId.answer %>
         </p>
@@ -74,17 +74,18 @@ TECHNICAL
 <!-- Management -->
 <div id="manag" class="col s12">
 
-    MANAGEMENT
     <div class="container white-text">
         <% var m_count=0; %>
         <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "management") { %>
             <% m_count++; %>
-            <p><h5>Question:
-                <%= m_count%>
+            <p><h5>Question
+                <%= m_count%> 
             </h5></p>
             <p><%= obj.questionId.question %></p>
-        <p><h5>Answer:</h5></p>
+        <p><h5>Answer
+                <%= m_count%> 
+        </h5></p>
         <p>
             <%= obj.questionId.answer %>
         </p>
@@ -101,17 +102,18 @@ TECHNICAL
 <!-- Design -->
 <div id="design" class="col s12">
 
-    DESIGN
     <div class="container white-text">
         <% var d_count=0; %>
         <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "design") { %>
             <% d_count++; %>
-            <p><h5>Question:
+            <p><h5>Question
                 <%= d_count%>
             </h5></p>
             <p><%= obj.questionId.question %></p>
-        <p><h5>Answer:</h5></p>
+        <p><h5>Answer
+                <%= d_count%>
+        </h5></p>
         <p>
             <%= obj.questionId.answer %>
         </p>
@@ -134,18 +136,18 @@ TECHNICAL
             <p>Are you sure you want to proceed?</p>
             </div>
             <div class="modal-footer indigo lighten-5">
-            <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="accept">YES</a>
+                    <a id="approved" onclick="submit1()" href="/admin" class="modal-close waves-effect waves-green btn-flat" value="approved">YES</a>
             </div>
             </div>
             
             
-            <a class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#dmodal2">WAITING</a>
+            <a class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#dmodal2">HOLD</a>
             <div id="dmodal2" class="modal indigo lighten-5">
             <div class="modal-content">
               <p>Are you sure you want to proceed?</p>
             </div>
             <div class="modal-footer indigo lighten-5">
-              <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="waiting">YES</a>
+              <a id="hold" onclick="submit2()" href="/admin" class="modal-close waves-effect waves-green btn-flat" value="hold">YES</a>
             </div>
             </div>
                 
@@ -156,7 +158,7 @@ TECHNICAL
             <p>Are you sure you want to proceed?</p>
             </div>
             <div class="modal-footer indigo lighten-5">
-            <a href="/admin" class="modal-close waves-effect waves-green btn-flat" value="reject">YES</a>
+            <a id="reject" onclick="submit3()" href="/admin" class="modal-close waves-effect waves-green btn-flat" value="reject">YES</a>
             </div>
             </div>
             
@@ -189,6 +191,73 @@ TECHNICAL
 $(document).ready(function () {
             $('.tabs').tabs();
 });
+
+
+    function submit1() {
+    console.log("<%= data[0].regno %>");
+    var status= "approved";
+    console.log(status);
+      
+      $.ajax({
+        url: "/admin/userData/<%= data[0].regno %>",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/x-www-form-urlencoded",
+        data: {status: status},
+        success: function (res) {
+          if (res.success == true) {
+            console.log("Done!");
+          }
+        },
+        error: function (msg) {
+          console.log(msg);
+        }
+      });
+    }
+
+    function submit2() {
+    console.log("<%= data[0].regno %>");
+    var status= "hold";
+    console.log(status);
+      
+      $.ajax({
+        url: "/admin/userData/<%= data[0].regno %>",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/x-www-form-urlencoded",
+        data: {status: status},
+        success: function (res) {
+          if (res.success == true) {
+            console.log("Done!");
+          }
+        },
+        error: function (msg) {
+          console.log(msg);
+        }
+      });
+    }
+
+    function submit3() {
+    console.log("<%= data[0].regno %>");
+    var status= "reject";
+    console.log(status);
+      
+      $.ajax({
+        url: "/admin/userData/<%= data[0].regno %>",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/x-www-form-urlencoded",
+        data: {status: status},
+        success: function (res) {
+          if (res.success == true) {
+            console.log("Done!");
+          }
+        },
+        error: function (msg) {
+          console.log(msg);
+        }
+      });
+    }
       
       </script>
 
