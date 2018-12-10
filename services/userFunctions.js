@@ -28,10 +28,6 @@ module.exports.getUsers = () => {
 module.exports.addUser = userDetails => {
   return new Promise((resolve, reject) => {
     try {
-      var check = userService.checkReg(userDetails.regno);
-      if (!check) {
-        return reject("invalid registration number");
-      }
       User.findOne({
         $or: [{ regno: userDetails.regno }, { email: userDetails.email }]
       })
@@ -40,13 +36,11 @@ module.exports.addUser = userDetails => {
           if (user) {
             return reject("User already registered");
           }
-          console.log(user);
+          userService.checkReg(userDetails);
           let newUser = new User(userDetails);
           if (userDetails.password === process.env.ADMIN_PASS) {
-            console.log("password matched");
             newUser.role = "admin";
           }
-          console.log("not admin");
           newUser.email = userDetails.email;
           newUser.regno = userDetails.regno;
           newUser.phone = userDetails.phone;
