@@ -125,10 +125,14 @@ router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
     await user.save();
 
     await userService.timeStatus(req.user.id);
-    res.render("thanks");
+    res.redirect("/thanks");
   } catch (error) {
     return next(error);
   }
+});
+
+router.post("/thanks", (req, res, next) => {
+  res.render("thanks");
 });
 
 module.exports = router;
