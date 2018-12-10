@@ -12,7 +12,7 @@
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
     </script> -->
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-    <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css ">
+    <!-- <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css "> -->
     <link rel="stylesheet" href="/stylesheets/register.css" />
 </head>
 
@@ -23,7 +23,7 @@
                 <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
             </div>
         </div>
-        <div class="row" data-sal-duration="500" data-sal="fade" data-sal-delay="300" data-sal-easing="ease-in">
+        <div class="row">
             <div class="col s7 s12 m12 l7 sect1">
                 <div class="right-inner">
                     <h4 class="heading">Core Comittee Selections</h4>
@@ -56,6 +56,8 @@
                         <li class="input-field">
                             <label for="pwd">Password</label><input id="pwd" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                                 name="password" class="validate" required />
+                            <span class="helper-text" data-error="wrong" data-success="right">Must contain a Special
+                                Character, a Capital letter and a Number.</span>
                         </li>
                         <li class="input-field gender">
                             <p>

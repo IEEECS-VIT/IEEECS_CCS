@@ -102,6 +102,9 @@ input[type=number]::-webkit-outer-spin-button {
     align-items: center;
 }
 
+.gender p {
+    font-size: 0.8em;
+}
 
 
 
