@@ -85,7 +85,6 @@ router.post("/domain", auth.isUser, auth.isAttempt, async (req, res, next) => {
 router.get("/question", auth.isUser, auth.isAttempt, async (req, res, next) => {
   try {
     var stuff = await userService.setQuestions(req.user.id);
-    console.log(stuff);
 
     let questions = stuff.map(question => {
       return {
@@ -97,7 +96,6 @@ router.get("/question", auth.isUser, auth.isAttempt, async (req, res, next) => {
       response: questions,
       attempted: true
     });
-    console.log(req.user.id);
     const data = await A_Database.find(
       { _id: req.user.id },
       "response domain maxTime"

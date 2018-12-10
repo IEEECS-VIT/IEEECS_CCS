@@ -51,7 +51,9 @@ module.exports.checkReg = userDetails => {
     phone = phone.length;
     var password = userDetails.password;
     password = password.length;
-    if (!/^18[A-Z]{3}[0-9]{4}$/.test(regno)) {
+    // 18938173831
+    // 18[A-Z]{3}[0-9]{3}[0-9]$
+    if (!/18[A-Z]{3}[0-9]{3}[0-9]$/.test(regno)) {
       message = "regNo format invalid";
       console.log("reg");
       return res.render("register", { message: message });
