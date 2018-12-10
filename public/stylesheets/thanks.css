@@ -1,0 +1,46 @@
+html {
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+}
+
+body {
+    background-color: #202020;
+    height: 100%;
+    width: 100%;
+}
+
+h2 {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    color: white;
+}
+
+.centering {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.vcentering {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-logo {
+    width: 12em;
+    margin: 1em 0 1em 0;
+}
+
+.custom-image {
+    margin-top: 2%;
+    height: 50%;
+    width: 50%;
+}

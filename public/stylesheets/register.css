@@ -81,9 +81,9 @@ input[type=number]::-webkit-outer-spin-button {
     display: none;
 }
 
-.sect2 {
-    /* padding: 5em !important; */
-}
+/* .sect2 { */
+/* padding: 5em !important; */
+/* } */
 
 .sect1 {
     text-align: center;

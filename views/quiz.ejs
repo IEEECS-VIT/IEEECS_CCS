@@ -28,7 +28,7 @@
         <a href="#" data-target="mobile" class="sidenav-trigger"><i class="fa fa-bars" style="color:white; font-size: 24px"></i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a onclick="submit()" class="snl">Submit</a></li>
-          <li><a href="/logout" class="snl">Logout</a></li>
+          <!-- <li><a href="/logout" class="snl">Logout</a></li> -->
         </ul>
       </div>
       <div class="nav-content">
@@ -47,7 +47,7 @@
       <img src="/images/IEEE-CS_New.png" alt="logo" class="custom-logo mobile-logo" />
     </li>
     <li><a onclick="submit()" style="color:white">Submit</a></li>
-    <li><a href="/logout" style="color:white">Logout</a></li>
+    <!-- <li><a href="/logout" style="color:white">Logout</a></li> -->
   </ul>
   <% var count=0%>
   <div id="technical_tab" class="col s12">
@@ -73,7 +73,7 @@
       </div>
       <% }}); %>
       <% if (t_count==0) { %>
-      <p>Not chosen!</p>
+      <h3 style="text-align:center;">You have not chosen this domain...</h3>
       <% } %>
     </div>
   </div>
@@ -100,7 +100,7 @@
       </div>
       <% }}); %>
       <% if (m_count==0) { %>
-      <p>Not chosen!</p>
+      <h3 style="text-align:center;">You have not chosen this domain...</h3>
       <% } %>
     </div>
   </div>
@@ -127,7 +127,7 @@
       </div>
       <% }}); %>
       <% if (d_count==0) { %>
-      <p>Not chosen!</p>
+      <h3 style="text-align:center;">You have not chosen this domain...</h3>
       <% } %>
     </div>
   </div>
@@ -145,6 +145,7 @@
       <a href="#" class="modal-close waves-effect waves-green btn-flat">Submit & Logout</a>
     </div>
   </div>
+  <!-- add here -->
 
   <script>
     $(document).ready(function () {

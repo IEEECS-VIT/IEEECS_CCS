@@ -55,6 +55,17 @@ label {
     color: white;
 }
 
+.custom-button2 {
+    margin-top: 1em;
+    color: white;
+    width: 10em;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #858585 !important;
+    border-radius: 100px;
+}
+
 [type="checkbox"]:checked+span:not(.lever):before {
     border-right: 2px solid #FAA41A !important;
     border-bottom: #FAA41A 2px solid !important;
