@@ -63,6 +63,7 @@
 
                               <!-- PRINT THE TABLE DATA -->
                               <% var count=1; %>
+                              <% data.sort(function(a,b){return a.regno-b.regno}); %>
                               <% data.forEach(function(student) { %>
                                 <li>
                                     <% count++; %>

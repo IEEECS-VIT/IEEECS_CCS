@@ -103,3 +103,19 @@ li{
     }
 
 } 
+.scrollable{
+    height : 600px;
+    overflow-y: auto;
+
+}
+
+@media(max-width : 400px){
+    .modal{
+        width: 200px;
+    }
+    .scrollable{
+        height: 400px;
+        overflow-y: auto;
+    }
+    
+    }
