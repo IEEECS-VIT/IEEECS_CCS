@@ -27,7 +27,7 @@
 
         <a href="#" data-target="mobile" class="sidenav-trigger"><i class="fa fa-bars" style="color:white; font-size: 24px"></i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a onclick="submit()" class="snl">Submit</a></li>
+          <li><a onclick="submit()" class="snl" href="/thanks">Submit</a></li>
           <!-- <li><a href="/logout" class="snl">Logout</a></li> -->
         </ul>
       </div>
@@ -46,7 +46,7 @@
     <li class="center">
       <img src="/images/IEEE-CS_New.png" alt="logo" class="custom-logo mobile-logo" />
     </li>
-    <li><a onclick="submit()" style="color:white">Submit</a></li>
+    <li><a onclick="submit()" style="color:white" href="/thanks">Submit</a></li>
     <!-- <li><a href="/logout" style="color:white">Logout</a></li> -->
   </ul>
   <% var count=0%>
@@ -142,7 +142,7 @@
       </p>
     </div>
     <div class="modal-footer">
-      <a href="#" class="modal-close waves-effect waves-green btn-flat">Submit & Logout</a>
+      <a href="/thanks" class="modal-close waves-effect waves-green btn-flat">Finish</a>
     </div>
   </div>
   <!-- add here -->
@@ -202,15 +202,20 @@
       });
     }
 
+    // var sec = 10;
+    // var time = setInterval(myTimer, 1000);
+    var timeUpMsg = "Time Up!";
+
     function myTimer() {
-      document.getElementById("timer").innerHTML =
-        parseInt(sec / 60) + "min " + (sec % 60) + "sec left";
+      document.getElementById("timer").innerHTML = parseInt(sec / 60) + "min " + (sec % 60) + "sec left";
       sec--;
       if (sec < 0) {
-        submit();
         // alert("Time out!! :(");
+        clearInterval(time);
+        document.getElementById("timer").innerHTML = timeUpMsg;
         $(".modal").modal("open");
         $("modal").closeModal();
+        submit();
       }
     }
   </script>
