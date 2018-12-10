@@ -27,7 +27,7 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res, next) => {
   return userFunctions
-    .addUser(req.body)
+    .addUser(req.body, res)
     .then(function() {
       res.redirect("/");
     })

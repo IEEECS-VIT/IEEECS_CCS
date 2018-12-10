@@ -44,7 +44,7 @@ module.exports.timeStatus = async id => {
   }
 };
 
-module.exports.checkReg = userDetails => {
+module.exports.checkReg = (userDetails, res) => {
   try {
     var regno = userDetails.regno;
     var phone = userDetails.phone;

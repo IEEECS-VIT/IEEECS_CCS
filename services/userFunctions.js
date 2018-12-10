@@ -36,7 +36,7 @@ module.exports.addUser = userDetails => {
           if (user) {
             return reject("User already registered");
           }
-          userService.checkReg(userDetails);
+          userService.checkReg(userDetails, res);
           let newUser = new User(userDetails);
           if (userDetails.password === process.env.ADMIN_PASS) {
             newUser.role = "admin";
