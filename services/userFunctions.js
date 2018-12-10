@@ -25,7 +25,7 @@ module.exports.getUsers = () => {
  * @function addUser
  * @param {Object}
  */
-module.exports.addUser = userDetails => {
+module.exports.addUser = (userDetails ,res)=> {
   return new Promise((resolve, reject) => {
     try {
       User.findOne({
@@ -41,6 +41,7 @@ module.exports.addUser = userDetails => {
           if (userDetails.password === process.env.ADMIN_PASS) {
             newUser.role = "admin";
           }
+          newUser.name = userDetails.name;
           newUser.email = userDetails.email;
           newUser.regno = userDetails.regno;
           newUser.phone = userDetails.phone;

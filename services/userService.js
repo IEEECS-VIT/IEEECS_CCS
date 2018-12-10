@@ -48,22 +48,27 @@ module.exports.checkReg = (userDetails, res) => {
   try {
     var regno = userDetails.regno;
     var phone = userDetails.phone;
+    var name = userDetails.name;
     phone = phone.length;
     var password = userDetails.password;
     password = password.length;
     // 18938173831
     // 18[A-Z]{3}[0-9]{3}[0-9]$
     if (!/18[A-Z]{3}[0-9]{3}[0-9]$/.test(regno)) {
-      message = "regNo format invalid";
+      message = "Reg. No format invalid";
       console.log("reg");
       return res.render("register", { message: message });
     }
+    if(!/[a-zA-Z]+/.test(name)){
+      message = "Name should only have alphabets!";
+      return res.render("register",{message});
+    }
     if (phone != 10) {
-      message = "phone number format invalid";
+      message = "Phone number format invalid";
       return res.render("register", { message: message });
     }
     if (password < 8) {
-      message = "password length must be greater than 8 letters ";
+      message = "Password length must be greater than 8 letters ";
       return res.render("register", { message: message });
     } else {
       return false;
