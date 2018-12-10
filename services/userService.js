@@ -33,7 +33,7 @@ module.exports.timeStatus = async id => {
 
     var duration = endTime - startTime;
     var actDuration = duration - maxTime;
-    actDuration = actDuration / 60;
+    actDuration = actDuration / 60000;
     var overSmart = "no";
     if (actDuration > 5) {
       overSmart = "yes";
@@ -49,8 +49,12 @@ module.exports.checkReg = async regno => {
     var newReg = req.body.split("");
     var newreg = newReg[1];
     if (regno.length == 9 && newReg == "8") {
+      return next();
     }
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    let error = new Error();
+    error.message = "Reg number is invalid";
+    error.status = 403;
+    next(error);
   }
 };

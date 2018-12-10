@@ -1,6 +1,7 @@
 const passportStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt-nodejs");
 const User = require("../models/applicant");
+const userService = require("../services/userService");
 
 // /**
 //  * @function passport
@@ -25,6 +26,7 @@ module.exports = passport => {
         passReqToCallback: true
       },
       (req, regno, password, done) => {
+        userService.checkReg(req.body.regno);
         process.nextTick(() => {
           User.findOne({
             regno: regno

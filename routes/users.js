@@ -26,6 +26,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res, next) => {
+  userService.checkReg(req.body.regno);
   return userFunctions
     .addUser(req.body)
     .then(function() {
@@ -124,7 +125,7 @@ router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
     await user.save();
 
     await userService.timeStatus(req.user.id);
-    res.json({ success: true });
+    res.render("thanks");
   } catch (error) {
     return next(error);
   }
