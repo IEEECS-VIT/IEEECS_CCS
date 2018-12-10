@@ -34,7 +34,7 @@ router.post("/register", async (req, res, next) => {
     .catch(next);
 });
 
-router.get("/user-role", (req, res, next) => {
+router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
   try {
     if (req.user.role === "admin") {
       return res.redirect("/admin");

@@ -43,3 +43,14 @@ module.exports.timeStatus = async id => {
     throw error;
   }
 };
+
+module.exports.checkReg = async regno => {
+  try {
+    var newReg = req.body.split("");
+    var newreg = newReg[1];
+    if (regno.length == 9 && newReg == "8") {
+    }
+  } catch (error) {
+    throw error;
+  }
+};
