@@ -22,7 +22,7 @@ router.post(
 );
 
 router.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register", { message: "" });
 });
 
 router.post("/register", async (req, res, next) => {
@@ -31,7 +31,9 @@ router.post("/register", async (req, res, next) => {
     .then(function() {
       res.redirect("/");
     })
-    .catch(next);
+    .catch(err => {
+      res.render("register", { message: err });
+    });
 });
 
 router.get("/user-role", auth.isLoggedIn, (req, res, next) => {

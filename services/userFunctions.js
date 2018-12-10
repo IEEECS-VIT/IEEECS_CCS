@@ -30,26 +30,15 @@ module.exports.addUser = userDetails => {
     try {
       var check = userService.checkReg(userDetails.regno);
       if (!check) {
-        return reject(new Error("invalid registration number"));
+        return reject("invalid registration number");
       }
       User.findOne({
-        email: userDetails.email
+        $or: [{ regno: userDetails.regno }, { email: userDetails.email }]
       })
         .exec()
         .then(user => {
           if (user) {
-            return reject(
-              new Error("User with the same email already registered")
-            );
-          }
-        });
-      User.findOne({
-        regno: userDetails.regno
-      })
-        .exec()
-        .then(user => {
-          if (user) {
-            return reject(new Error("User already registered"));
+            return reject("User already registered");
           }
           console.log(user);
           let newUser = new User(userDetails);

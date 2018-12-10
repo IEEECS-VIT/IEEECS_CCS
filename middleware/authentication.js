@@ -17,17 +17,15 @@ module.exports = {
 
   isAttempt: (req, res, next) => {
     if (!req.user.attempted) return next();
-    let error = new Error();
-    error.message = "You have already submitted the page.";
-    error.status = 403;
-    next(error);
+    // let error = new Error();
+    message = "You have already Attampted the quiz.";
+    // error.status = 403;
+    res.render("thanks", { message });
   },
   isSubmit: (req, res, next) => {
     if (!req.user.submitted) return next();
-    let error = new Error();
-    error.message = "You have already submitted the page.";
-    error.status = 403;
-    next(error);
+    message = "You have already submitted the page.";
+    res.render("thanks", { message });
   },
 
   isAdmin: (req, res, next) => {
