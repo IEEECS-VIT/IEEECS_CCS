@@ -44,12 +44,25 @@ module.exports.timeStatus = async id => {
   }
 };
 
-module.exports.checkReg = async regno => {
+module.exports.checkReg = userDetails => {
   try {
-    var newReg = regno.split("");
-    var newreg = newReg[1];
-    if (regno.length == 9 && newReg == "8") {
-      return true;
+    var regno = userDetails.regno;
+    var phone = userDetails.phone;
+    phone = phone.length;
+    var password = userDetails.password;
+    password = password.length;
+    if (!/^18[A-Z]{3}[0-9]{4}$/.test(regno)) {
+      message = "regNo format invalid";
+      console.log("reg");
+      return res.render("register", { message: message });
+    }
+    if (phone != 10) {
+      message = "phone number format invalid";
+      return res.render("register", { message: message });
+    }
+    if (password < 8) {
+      message = "password length must be greater than 8 letters ";
+      return res.render("register", { message: message });
     } else {
       return false;
     }

@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
   try {
     var data = await A_Database.find(
       { role: "public" },
-      "regno status domain phone"
+      "regno status domain phone startTime endTime"
     );
     res.render("userList", { data: data });
   } catch (error) {
