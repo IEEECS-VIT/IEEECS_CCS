@@ -44,7 +44,7 @@ router.post("/userdata/:idd", async (req, res, next) => {
     var idd = req.path;
     idd = idd.split("/");
     idd = idd[2];
-    await adminService.updateStatus(idd, req.user.id, req.body.status);
+    await adminService.updateStatus(idd, req.user.regno, req.body.status);
     res.send("Admin test complete");
   } catch (error) {
     return next(error);

@@ -46,15 +46,14 @@ module.exports.timeStatus = async id => {
 
 module.exports.checkReg = async regno => {
   try {
-    var newReg = req.body.split("");
+    var newReg = regno.split("");
     var newreg = newReg[1];
     if (regno.length == 9 && newReg == "8") {
-      return next();
+      return true;
+    } else {
+      return false;
     }
-  } catch (err) {
-    let error = new Error();
-    error.message = "Reg number is invalid";
-    error.status = 403;
-    next(error);
+  } catch (error) {
+    throw error;
   }
 };

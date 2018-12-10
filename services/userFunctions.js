@@ -1,5 +1,6 @@
 const Promise = require("bluebird");
 const User = require("../models/applicant");
+const userService = require("../services/userService");
 require("dotenv").config();
 
 /**
@@ -27,6 +28,21 @@ module.exports.getUsers = () => {
 module.exports.addUser = userDetails => {
   return new Promise((resolve, reject) => {
     try {
+      var check = userService.checkReg(userDetails.regno);
+      if (!check) {
+        return reject(new Error("invalid registration number"));
+      }
+      User.findOne({
+        email: userDetails.email
+      })
+        .exec()
+        .then(user => {
+          if (user) {
+            return reject(
+              new Error("User with the same email already registered")
+            );
+          }
+        });
       User.findOne({
         regno: userDetails.regno
       })

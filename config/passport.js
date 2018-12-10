@@ -26,7 +26,6 @@ module.exports = passport => {
         passReqToCallback: true
       },
       (req, regno, password, done) => {
-        userService.checkReg(req.body.regno);
         process.nextTick(() => {
           User.findOne({
             regno: regno

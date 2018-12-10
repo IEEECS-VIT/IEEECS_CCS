@@ -26,7 +26,6 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res, next) => {
-  userService.checkReg(req.body.regno);
   return userFunctions
     .addUser(req.body)
     .then(function() {
@@ -49,6 +48,10 @@ router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+router.get("/thanks", (req, res, next) => {
+  req.logout();
+  res.render("thanks");
 });
 
 router.get(
@@ -129,10 +132,6 @@ router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-});
-
-router.post("/thanks", (req, res, next) => {
-  res.render("thanks");
 });
 
 module.exports = router;
