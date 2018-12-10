@@ -36,7 +36,9 @@ module.exports.addUser = (userDetails ,res)=> {
           if (user) {
             return reject("User already registered");
           }
-          userService.checkReg(userDetails, res);
+          let message = userService.checkReg(userDetails, res);
+          if(message!="ok")
+            resolve(message);
           let newUser = new User(userDetails);
           if (userDetails.password === process.env.ADMIN_PASS) {
             newUser.role = "admin";
@@ -47,7 +49,7 @@ module.exports.addUser = (userDetails ,res)=> {
           newUser.phone = userDetails.phone;
           newUser.gender = userDetails.gender;
           newUser.password = newUser.generateHash(userDetails.password);
-          newUser.save().then(savedUser => resolve(savedUser));
+          newUser.save().then(savedUser => resolve("ok"));
         })
         .catch(err => reject(err));
     } catch (error) {

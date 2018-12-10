@@ -9,16 +9,23 @@ const auth = require("../middleware/authentication");
 var date = new Date();
 
 router.get("/", (req, res) => {
-  res.render("index");
+  res.render("index",{message:""});
 });
 
 router.post(
-  "/login",
-  passport.authenticate("login", {
-    successRedirect: "/user-role",
-    failureRedirect: "/",
-    failureFlash: true
-  })
+  "/login",(req,res,next) => {
+    passport.authenticate("login",function(err,user,msg) {
+      if(err) {
+        return res.render("index",{message:msg.message});
+      }
+      if(!user) {
+        return res.render("index",{message:msg.message});
+      }
+      else {
+        return res.redirect("/user-role");
+      }
+    })(req,res,next);
+  }
 );
 
 router.get("/register", (req, res) => {
@@ -28,11 +35,13 @@ router.get("/register", (req, res) => {
 router.post("/register", async (req, res, next) => {
   return userFunctions
     .addUser(req.body, res)
-    .then(function() {
-      res.redirect("/");
+    .then(function(message) {
+      if(message == "ok")
+        res.redirect("/");
+      res.render("register",{message:message});
     })
     .catch(err => {
-      res.render("register", { message: err });
+      next(err);
     });
 });
 
@@ -47,11 +56,11 @@ router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
   }
 });
 
-router.get("/logout", (req, res) => {
+router.get("/logout", auth.isUser, (req, res) => {
   req.logout();
   res.redirect("/");
 });
-router.get("/thanks", (req, res, next) => {
+router.get("/thanks", auth.isUser, (req, res, next) => {
   req.logout();
   res.render("thanks");
 });
@@ -128,7 +137,7 @@ router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
     await user.save();
 
     await userService.timeStatus(req.user.id);
-    res.redirect("/thanks");
+    res.json({success:true});
   } catch (error) {
     return next(error);
   }
