@@ -9,23 +9,16 @@ const auth = require("../middleware/authentication");
 var date = new Date();
 
 router.get("/", (req, res) => {
-  res.render("index",{message:""});
+  res.render("index", { message: req.flash("message") || "" });
 });
 
 router.post(
-  "/login",(req,res,next) => {
-    passport.authenticate("login",function(err,user,msg) {
-      if(err) {
-        return res.render("index",{message:msg.message});
-      }
-      if(!user) {
-        return res.render("index",{message:msg.message});
-      }
-      else {
-        return res.redirect("/user-role");
-      }
-    })(req,res,next);
-  }
+  "/login",
+  passport.authenticate("login", {
+    successRedirect: "/user-role",
+    failureRedirect: "/",
+    failureFlash: true
+  })
 );
 
 router.get("/register", (req, res) => {
@@ -34,19 +27,22 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res, next) => {
   return userFunctions
-    .addUser(req.body, res)
+    .addUser(req.body)
     .then(function(message) {
-      if(message == "ok")
-        res.redirect("/");
-      res.render("register",{message:message});
+      if (message === "ok") return res.redirect("/");
+      res.render("register", { message: message });
     })
     .catch(err => {
+      console.log(err);
+
       next(err);
     });
 });
 
 router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
   try {
+    console.log("entered user-role");
+
     if (req.user.role === "admin") {
       return res.redirect("/admin");
     }
@@ -137,7 +133,7 @@ router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
     await user.save();
 
     await userService.timeStatus(req.user.id);
-    res.json({success:true});
+    res.json({ success: true });
   } catch (error) {
     return next(error);
   }

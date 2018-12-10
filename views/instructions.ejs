@@ -1,124 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="/stylesheets/instructions.css">
+    <link rel="stylesheet" href="/stylesheets/instructions.css" />
     <title>Ready for your test?</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="container">
-        <div class="row">
-            <div class="col12 top">
-                <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
-            </div>
+      <div class="row">
+        <div class="col12 top">
+          <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
         </div>
-        <div class="row">
-            <div class="col12">
-                <div class="info">
-                    <h4>
-                        Welcome
-                        <%=user.name%>
-                    </h4>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora facere blanditiis, laborum
-                        sequi quo saepe dolor vel repudiandae! Aut, error, libero placeat cumque in quia optio aperiam
-                        quae est mollitia dolores quod impedit dolore eaque quaerat! Debitis consequuntur perferendis
-                        modi reprehenderit. Deleniti nostrum laudantium mollitia quam id dolorem non unde!</p>
-                    <h4>Ipsum</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde tenetur laudantium sapiente
-                        dignissimos rerum, aliquam ullam ducimus error. Voluptate, ad beatae blanditiis sint provident
-                        at
-                        minus rerum nulla id minima.</p>
-                    <form action="" id="domain-choice">
-                        <div>
-                            <p>
-                                <label>
-                                    <input id="indeterminate-checkbox" type="checkbox" value="technical" class="t" />
-                                    <span>Technical</span>
-                                </label>
-                            </p>
-                            <p>
-                                <label>
-                                    <input id="indeterminate-checkbox" type="checkbox" value="management" class="m" />
-                                    <span>Management</span>
-                                </label>
-                            </p>
-                            <p>
-                                <label>
-                                    <input id="indeterminate-checkbox" type="checkbox" value="design" class="d" />
-                                    <span>Design</span>
-                                </label>
-                            </p>
-                        </div>
-                        <span class="button-placement">
-                            <a class="waves-effect waves btn-flat custom-button" href="#" onclick="displayDomains()">Begin
-                                Quiz</a>
-                        </span>
-                    </form>
-                    <span class="button-placement">
-                        <a class="waves-effect waves btn-flat custom-button2" href="/">Logout</a>
-                    </span>
-
-                </div>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col12">
+          <div class="info">
+            <h4>Welcome <%=user.name%></h4>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora
+              facere blanditiis, laborum sequi quo saepe dolor vel repudiandae!
+              Aut, error, libero placeat cumque in quia optio aperiam quae est
+              mollitia dolores quod impedit dolore eaque quaerat! Debitis
+              consequuntur perferendis modi reprehenderit. Deleniti nostrum
+              laudantium mollitia quam id dolorem non unde!
+            </p>
+            <h4>Ipsum</h4>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde
+              tenetur laudantium sapiente dignissimos rerum, aliquam ullam
+              ducimus error. Voluptate, ad beatae blanditiis sint provident at
+              minus rerum nulla id minima.
+            </p>
+            <form action="" id="domain-choice">
+              <div>
+                <p>
+                  <label>
+                    <input
+                      id="indeterminate-checkbox"
+                      type="checkbox"
+                      value="technical"
+                      class="t"
+                    />
+                    <span>Technical</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input
+                      id="indeterminate-checkbox"
+                      type="checkbox"
+                      value="management"
+                      class="m"
+                    />
+                    <span>Management</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input
+                      id="indeterminate-checkbox"
+                      type="checkbox"
+                      value="design"
+                      class="d"
+                    />
+                    <span>Design</span>
+                  </label>
+                </p>
+              </div>
+              <span class="button-placement">
+                <a
+                  class="waves-effect waves btn-flat custom-button"
+                  onclick="displayDomains()"
+                  >Begin Quiz</a
+                >
+              </span>
+            </form>
+            <span class="button-placement">
+              <a class="waves-effect waves btn-flat custom-button2" href="/"
+                >Logout</a
+              >
+            </span>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-<script>
-    var selected = ['test', ];
-    $(document).ready(function () {
-        console.log("here");
+  </body>
+  <script>
+    var selected = ["test"];
+    $(document).ready(function() {
+      console.log("here");
 
-
-
-        // var management = $('.m').val();
-        // var design = $('.d').val();
+      // var management = $('.m').val();
+      // var design = $('.d').val();
     });
 
     function displayDomains() {
-        var domain = [];
-        console.log("Hello");
-        if ($('.t').is(':checked')) {
-            console.log("hello");
-            var technical = $('.t').val();
-            domain.push(technical);
-        }
+      var domain = [];
+      console.log("Hello");
+      if ($(".t").is(":checked")) {
+        console.log("hello");
+        var technical = $(".t").val();
+        domain.push(technical);
+      }
 
-        if ($('.m').is(':checked')) {
-            console.log("hello");
-            var management = $('.m').val();
-            domain.push(management);
-        }
+      if ($(".m").is(":checked")) {
+        console.log("hello");
+        var management = $(".m").val();
+        domain.push(management);
+      }
 
-        if ($('.d').is(':checked')) {
-            var design = $('.d').val();
-            domain.push(design);
+      if ($(".d").is(":checked")) {
+        var design = $(".d").val();
+        domain.push(design);
+      }
+      $.ajax({
+        url: "/domain",
+        method: "POST",
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+          domain: domain
+        },
+        success: function(question) {
+          window.location.href = "/question";
+        },
+        error: function(msg) {
+          console.log(msg);
         }
-        $.ajax({
-            url: "/domain",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/x-www-form-urlencoded",
-            data: {
-                domain: domain
-            },
-            success: function (question) {
-                window.open("/question");
-
-            },
-            error: function (msg) {
-                console.log(msg);
-            }
-        });
+      });
     }
     // var stringArray = selected.join();
 
@@ -126,6 +149,5 @@
     //     console.log(selected);
     //     // console.log(stringArray);
     // }
-</script>
-
+  </script>
 </html>

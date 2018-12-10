@@ -44,7 +44,7 @@ module.exports.timeStatus = async id => {
   }
 };
 
-module.exports.checkReg = (userDetails, res) => {
+module.exports.validate = userDetails => {
   try {
     var regno = userDetails.regno;
     var phone = userDetails.phone;
@@ -53,6 +53,8 @@ module.exports.checkReg = (userDetails, res) => {
     var password = userDetails.password;
     password = password.length;
     var message = "ok";
+    console.log("inside validate");
+
     // 18938173831
     // 18[A-Z]{3}[0-9]{3}[0-9]$
     if (!/18[A-Z]{3}[0-9]{3}[0-9]$/.test(regno)) {
@@ -62,7 +64,7 @@ module.exports.checkReg = (userDetails, res) => {
 
       // res.render("register", { message: message });
     }
-    if(!/^[a-zA-Z]+$/.test(name)){
+    if (!/^[a-zA-Z]+$/.test(name)) {
       message = "Name should only have alphabets!";
       return message;
       //  res.render("register",{ message: message });

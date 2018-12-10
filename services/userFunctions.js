@@ -25,7 +25,7 @@ module.exports.getUsers = () => {
  * @function addUser
  * @param {Object}
  */
-module.exports.addUser = (userDetails ,res)=> {
+module.exports.addUser = userDetails => {
   return new Promise((resolve, reject) => {
     try {
       User.findOne({
@@ -33,12 +33,18 @@ module.exports.addUser = (userDetails ,res)=> {
       })
         .exec()
         .then(user => {
+          console.log("query success");
+          console.log(user);
+
           if (user) {
-            return reject("User already registered");
-          }
-          let message = userService.checkReg(userDetails, res);
-          if(message!="ok")
+            message = "User already registered";
             resolve(message);
+          }
+          message = userService.validate(userDetails);
+          console.log("validated");
+
+          if (message !== "ok") resolve(message);
+
           let newUser = new User(userDetails);
           if (userDetails.password === process.env.ADMIN_PASS) {
             newUser.role = "admin";
@@ -49,10 +55,13 @@ module.exports.addUser = (userDetails ,res)=> {
           newUser.phone = userDetails.phone;
           newUser.gender = userDetails.gender;
           newUser.password = newUser.generateHash(userDetails.password);
+          console.log("password hashed");
+
           newUser.save().then(savedUser => resolve("ok"));
         })
         .catch(err => reject(err));
     } catch (error) {
+      console.log(error);
       return reject(error);
     }
   });

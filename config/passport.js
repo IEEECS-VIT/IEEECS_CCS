@@ -27,23 +27,33 @@ module.exports = passport => {
       },
       (req, regno, password, done) => {
         process.nextTick(() => {
+          console.log("trying passport");
+
           User.findOne({
             regno: regno
           })
             .exec()
             .then(user => {
+              console.log(user);
+
               if (!user) {
                 console.log("wrong id");
-                return done(null, false, {
-                  message: "User not found."
-                });
+                return done(
+                  null,
+                  false,
+                  req.flash("message", "User not found")
+                );
               }
               if (!bcrypt.compareSync(password, user.password)) {
                 console.log("wrong pass");
-                return done(null, false, {
-                  message: "Wrong password."
-                });
+                return done(
+                  null,
+                  false,
+                  req.flash("message", "Password is Incorrect")
+                );
               }
+              console.log("password valid, success");
+
               return done(null, user);
             })
             .catch(err => done(err));
