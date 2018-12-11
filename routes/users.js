@@ -45,7 +45,7 @@ router.post("/register", async (req, res, next) => {
         .addUser(req.body)
         .then(function(message) {
           if (message === "ok") return res.redirect("/");
-          res.render("register", { message: message });
+          return res.render("register", { message: message });
         })
         .catch(err => {
           console.log(err);

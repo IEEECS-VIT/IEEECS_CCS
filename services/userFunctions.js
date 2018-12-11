@@ -38,13 +38,12 @@ module.exports.addUser = userDetails => {
 
           if (user) {
             message = "User already registered";
-            resolve(message);
+            return resolve(message);
           }
           message = userService.validate(userDetails);
-          console.log("validated");
+          console.log(message);
 
-          if (message !== "ok") resolve(message);
-
+          if (message !== "ok") return resolve(message);
           let newUser = new User(userDetails);
           if (userDetails.password === process.env.ADMIN_PASS) {
             newUser.role = "admin";
