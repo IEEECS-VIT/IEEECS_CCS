@@ -68,6 +68,9 @@
         <p>
             <%= obj.questionId.answer %>
         </p>
+        <div>&nbsp;</div>
+   <hr>
+   <div>&nbsp;</div>
         <% }}); %>
         <% if (t_count==0) { %>
         <p class="white-text">Not chosen!</p>
@@ -93,7 +96,7 @@
             <p><h5>User Answer
                 <%= m_count%> </h5></p>
             <p>
-               <% obj.userSolution %>
+               <%= obj.userSolution %>
             </p>
         <p><h5>Expected Answer
                 <%= m_count%> 
@@ -101,12 +104,14 @@
         <p>
             <%= obj.questionId.answer %>
         </p>
+        <div>&nbsp;</div>
+   <hr>
+   <div>&nbsp;</div>
         <% }}); %>
         <% if (m_count==0) { %>
         <p class="white-text">Not chosen!</p>
         <% } %>
     </div>
-
     </div>
     
 <!-- END Management -->
@@ -116,10 +121,6 @@
 
     <div class="container white-text">
         <% var d_count=0; %>
-        
-
-
-
         <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "design") { %>
             <% d_count++; %>
@@ -130,7 +131,7 @@
             <p><h5>User Answer
                 <%= d_count%> </h5></p>
             <p>
-                <% obj.userSolution %>
+                <%= obj.userSolution %>
           </p>
         <p><h5>Expected Answer
                 <%= d_count%>
@@ -138,6 +139,9 @@
         <p>
             <%= obj.questionId.answer %>
         </p>
+        <div>&nbsp;</div>
+   <hr>
+   <div>&nbsp;</div>
         <% }}); %>
         <% if (d_count==0) { %>
         <p class="white-text">Not chosen!</p>
@@ -151,37 +155,20 @@
 
 <footer class="page-footer myfooter">
         <div class="container">
-            <a class="waves-effect waves-light btn modal-trigger green black-text " href="#dmodal1">ACCEPT</a>
-            <div id="dmodal1" class="modal indigo lighten-5">
+            <a onclick="submit1()" class="waves-effect waves-light btn modal-trigger green black-text " href="#modal">ACCEPT</a>
+            <a onclick="submit2()" class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#modal">HOLD</a>
+            <a onclick="submit3()" class="waves-effect waves-light btn modal-trigger red black-text " href="#modal">REJECT</a>
+            
+            <div id="modal" class="modal indigo lighten-5">
             <div class="modal-content">
             <p>Are you sure you want to proceed?</p>
             </div>
             <div class="modal-footer indigo lighten-5">
-                    <a id="approved" onclick="submit1()" href="/admin" class="modal-close waves-effect waves-green btn-flat" value="approved">YES</a>
+                    <a href="/admin" class="modal-close waves-effect waves-green btn-flat">YES</a>
             </div>
             </div>
             
             
-            <a class="waves-effect waves-light btn modal-trigger  yellow darken-1 black-text" href="#dmodal2">HOLD</a>
-            <div id="dmodal2" class="modal indigo lighten-5">
-            <div class="modal-content">
-              <p>Are you sure you want to proceed?</p>
-            </div>
-            <div class="modal-footer indigo lighten-5">
-              <a id="hold" onclick="submit2()" href="/admin" class="modal-close waves-effect waves-green btn-flat" value="hold">YES</a>
-            </div>
-            </div>
-                
-            
-            <a class="waves-effect waves-light btn modal-trigger red black-text " href="#dmodal3">REJECT</a>
-            <div id="dmodal3" class="modal indigo lighten-5">
-            <div class="modal-content ">      
-            <p>Are you sure you want to proceed?</p>
-            </div>
-            <div class="modal-footer indigo lighten-5">
-            <a id="reject" onclick="submit3()" href="/admin" class="modal-close waves-effect waves-green btn-flat" value="reject">YES</a>
-            </div>
-            </div>
             
         </div>
         <div>&nbsp;</div>

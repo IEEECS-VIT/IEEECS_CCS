@@ -33,7 +33,7 @@ router.get("/userdata/:idd", async (req, res, next) => {
       { regno: idd },
       "regno response status overSmart"
     ).populate("response.questionId", "question qDomain answer");
-    // console.log(data);
+    console.log(data);
     // res.json(data);
     res.render("userAns", { data: data });
     // res.json(data);
@@ -49,6 +49,7 @@ router.post("/userdata/:idd", async (req, res, next) => {
     idd = idd[2];
     await adminService.updateStatus(idd, req.user.regno, req.body.status);
     res.send("Admin test complete");
+    res.redirect("/admin");
   } catch (error) {
     return next(error);
   }
