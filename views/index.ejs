@@ -15,26 +15,28 @@
 </head>
 
 <body>
-  <!-- <div class="preloader-wrapper active">
-    <div class="spinner-layer spinner-red-only">
-      <div class="circle-clipper left">
-        <div class="circle"></div>
+  <!--
+      <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
       </div>
-      <div class="gap-patch">
-        <div class="circle"></div>
-      </div>
-      <div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-    </div>
-  </div> -->
+    -->
 
   <div id="cover"></div>
   <script>
-    $(window).on('load', function(){
-    $('#cover').fadeOut(1000);
-    });
-  </script>
+    $(window).on("load", function() {
+        $("#cover").fadeOut(1000);
+      });
+    </script>
 
   <div class="container">
     <div class="row">
@@ -53,7 +55,6 @@
           </p>
         </div>
       </div>
-      <!--  -->
       <div class="col s5 s12 m12 l5 sect2">
         <form action="/login" method="POST">
           <h4 class="form-heading">Login</h4>
@@ -70,7 +71,9 @@
               <%=message%>
             </p>
             <li class="button-placement custom-button">
-              <button type="submit" class="waves-effect waves btn-flat" value="Submit">SUBMIT</button>
+              <button type="submit" class="waves-effect waves btn-flat" value="Submit">
+                SUBMIT
+              </button>
             </li>
           </ul>
         </form>
