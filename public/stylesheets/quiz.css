@@ -165,6 +165,14 @@ textarea:focus:not([readonly]) {
     border: 0px;
     border-radius: 5px;
   }
+  .mobile-submit:hover {
+    color: white !important;
+    background-color: #faa41a !important;
+  }
+  .mobile-submit:active {
+    color: white;
+    background-color: #faa41a;
+  }
   .button-pos {
     width: 100%;
     display: flex;
