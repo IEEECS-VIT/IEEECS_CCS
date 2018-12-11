@@ -5,11 +5,6 @@ var adminService = require("../services/adminService");
 var A_Database = require("../models/applicant");
 /* GET home page. */
 
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/loggedout");
-});
-
 router.get("/", async (req, res, next) => {
   try {
     var data = await A_Database.find(
