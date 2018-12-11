@@ -83,7 +83,7 @@ router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
 //   }
 // });
 
-router.get("/logout", auth.isUser, (req, res) => {
+router.get("/logout", auth.isLoggedIn, (req, res) => {
   req.logout();
   res.redirect("/");
 });
