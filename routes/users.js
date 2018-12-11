@@ -39,7 +39,7 @@ router.post("/register", async (req, res, next) => {
     .then(response => {
       let cResponse = JSON.parse(response);
       if (!cResponse.success) {
-        throw "Error in captcha";
+        res.render("register", { message: "Invalid Captcha" });
       }
       return userFunctions
         .addUser(req.body)
@@ -52,9 +52,7 @@ router.post("/register", async (req, res, next) => {
           next(err);
         });
     })
-    .catch(err => {
-      res.render("register", { message: err });
-    });
+    .catch(err => next(err));
 });
 
 router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
