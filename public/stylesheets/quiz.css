@@ -99,6 +99,28 @@ textarea:focus:not([readonly]) {
   width: 100%;
 }
 
+.pc-submit {
+  color: white;
+  background-color: #faa41a;
+  padding: 8px;
+  margin: 10px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.pc-submit:hover {
+  color: #faa41a !important;
+  background-color: white !important;
+}
+
+.pc-submit:active {
+  color: #faa41a !important;
+  background-color: white !important;
+}
+
+.mobile {
+  display: none;
+}
 /* .custom-sidenav li {
     color: white;
 } */
@@ -116,7 +138,7 @@ textarea:focus:not([readonly]) {
 /* min-height: 1000vh; */
 /* min-height: calc(75vh*10); */
 /* set min height to the probable amout of extended text areas totaled with all the 10 questions */
-
+/* 
 @media only screen and (max-width: 993px) {
   .brand-logo {
     display: none !important;
@@ -126,5 +148,36 @@ textarea:focus:not([readonly]) {
 @media only screen and (min-width: 993px) {
   .brand-logo {
     display: block !important;
+  }
+} */
+
+@media only screen and (max-width: 1024px) {
+  .mobile {
+    display: block;
+  }
+  .pc-submit {
+    display: none;
+  }
+  .mobile-submit {
+    color: white;
+    background-color: #faa41a;
+    padding: 12px;
+    border: 0px;
+    border-radius: 5px;
+  }
+  .mobile-submit:hover {
+    color: white !important;
+    background-color: #faa41a !important;
+  }
+  .mobile-submit:active {
+    color: white;
+    background-color: #faa41a;
+  }
+  .button-pos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    text-align: center;
   }
 }
