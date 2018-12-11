@@ -16,6 +16,7 @@ module.exports.setQuestions = async id => {
         questions[i] = questions[j];
         questions[j] = x;
       }
+      questions = questions.splice(0, 10);
       fArray.push.apply(fArray, questions);
     }
     return fArray;

@@ -52,6 +52,21 @@ router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
   }
 });
 
+// router.get("/data/:idd", async (req, res, next) => {
+//   try {
+//     var idd = req.path;
+//     idd = idd.split("/");
+//     idd = idd[2];
+//     var data = await A_Database.find(
+//       { regno: idd },
+//       "regno response status overSmart"
+//     ).populate("response.questionId", "question qDomain answer");
+//     res.json(data);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 router.get("/logout", auth.isUser, (req, res) => {
   req.logout();
   res.redirect("/");
@@ -74,7 +89,7 @@ router.post("/domain", auth.isUser, auth.isAttempt, async (req, res, next) => {
   try {
     var startTime = Date.now();
     var domain = req.body.domain;
-    var maxTime = domain.length * 600;
+    var maxTime = domain.length * 900;
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: domain,
       startTime: startTime,
