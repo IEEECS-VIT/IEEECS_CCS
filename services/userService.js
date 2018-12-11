@@ -64,7 +64,7 @@ module.exports.validate = userDetails => {
 
       // res.render("register", { message: message });
     }
-    if (!/^[a-zA-Z]+$/.test(name)) {
+    if (!/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/.test(name)) {
       message = "Name should only have alphabets!";
       return message;
       //  res.render("register",{ message: message });

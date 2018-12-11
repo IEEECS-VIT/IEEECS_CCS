@@ -16,6 +16,12 @@
 </head>
 
 <body>
+  <div id="cover"></div>
+  <script>
+    $(window).on('load', function () {
+      $('#cover').fadeOut(1000);
+    });
+  </script>
   <div class="navbar-fixed">
     <nav class="nav-extended">
       <div class="nav-wrapper">
@@ -133,13 +139,7 @@
   </div>
   <div id="modal1" class="modal">
     <div class="modal-content" style="color:black;">
-      <h4>Time Up!</h4>
-      <p>
-        Unfortunately your time to finish the test is up, your answers will be
-        saved automatically! <br />
-        You will be contacted shortly if you qualify and proceed for further
-        rounds.
-      </p>
+      <h4 style=" width: 100%;text-align:center">Time Up!</h4>
     </div>
     <!-- <div class="modal-footer">
       <a href="/thanks" class="modal-close waves-effect waves-green btn-flat">Finish</a>
@@ -167,8 +167,8 @@
     });
   </script>
   <script>
-    // var sec = parseInt("<%=data.maxTime%>");
-    var sec = 10;
+    var sec = parseInt("<%=data.maxTime%>");
+    // var sec = 10;
     var time = setInterval(myTimer, 1000);
     var flag = 0;
 

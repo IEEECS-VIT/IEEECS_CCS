@@ -66,6 +66,13 @@ label {
     border-radius: 100px;
 }
 
+#cover {
+    background: url("/images/load.svg") no-repeat scroll center center #202020;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
 [type="checkbox"]:checked+span:not(.lever):before {
     border-right: 2px solid #FAA41A !important;
     border-bottom: #FAA41A 2px solid !important;

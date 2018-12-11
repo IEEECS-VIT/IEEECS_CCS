@@ -90,6 +90,13 @@ textarea:focus:not([readonly]) {
     transition: 0.4s
 }
 
+#cover {
+    background: url("/images/load.svg") no-repeat scroll center center #202020;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
 
 /* .custom-sidenav li {
     color: white;
