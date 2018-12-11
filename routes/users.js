@@ -6,6 +6,7 @@ var userService = require("../services/userService");
 var userFunctions = require("../services/userFunctions");
 var passport = require("passport");
 const auth = require("../middleware/authentication");
+const request = require("request-promise");
 var date = new Date();
 
 router.get("/", (req, res) => {
@@ -26,16 +27,33 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res, next) => {
-  return userFunctions
-    .addUser(req.body)
-    .then(function(message) {
-      if (message === "ok") return res.redirect("/");
-      res.render("register", { message: message });
+  const options = {
+    method: "POST",
+    uri: "https://www.google.com/recaptcha/api/siteverify",
+    formData: {
+      secret: process.env.RECAPTCHA_SECRET,
+      response: req.body["g-recaptcha-response"]
+    }
+  };
+  request(options)
+    .then(response => {
+      let cResponse = JSON.parse(response);
+      if (!cResponse.success) {
+        return res.render("register", { message: "Invalid Captcha" });
+      }
+      return userFunctions
+        .addUser(req.body)
+        .then(function(message) {
+          if (message === "ok") return res.redirect("/");
+          res.render("register", { message: message });
+        })
+        .catch(err => {
+          console.log(err);
+          next(err);
+        });
     })
     .catch(err => {
-      console.log(err);
-
-      next(err);
+      res.render("register", { message: err });
     });
 });
 

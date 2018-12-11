@@ -9,9 +9,13 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
-    </script> -->
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <!--
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
+      </script>
+    -->
+    <!--
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    -->
     <!-- <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css "> -->
     <link rel="stylesheet" href="/stylesheets/register.css" />
 </head>
@@ -19,10 +23,10 @@
 <body>
     <div id="cover"></div>
     <script>
-        $(window).on('load', function(){
-          $('#cover').fadeOut(1000);
-          });
-        </script>
+        $(window).on("load", function() {
+        $("#cover").fadeOut(1000);
+      });
+    </script>
     <div class="container">
         <div class="row">
             <div class="col12 top">
@@ -62,8 +66,8 @@
                         <li class="input-field">
                             <label for="pwd">Password</label><input id="pwd" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                                 name="password" class="validate" required />
-                            <span class="helper-text">Must have One Special Character, One Number and an Upper and
-                                Lowercase letters [minimun size 8]</span>
+                            <span class="helper-text">Minimun 8 charecters. Must contain a Special character, A digit
+                                and Upper and Lowercase letters.</span>
                         </li>
                         <li class="input-field gender">
                             <p>
@@ -82,9 +86,25 @@
                         <p style="color:red;font-size:12px;text-align:center;width:100%;">
                             <%=message%>
                         </p>
+                        <div class="g-recaptcha" data-sitekey="6Lf96n8UAAAAAIPzsRSuQtoOldpI14e76_a3oz9g" data-size="invisible"
+                            data-callback="setResponse"></div>
                         <li class="button-placement custom-button">
-                            <button type="submit" class="waves-effect waves btn-flat" value="Submit" onclick="return validateform()">SUBMIT</button>
+                            <button type="submit" class="waves-effect waves btn-flat">
+                                Submit
+                            </button>
                         </li>
+                        <!--
+                <li class="button-placement custom-button">
+                  <button
+                    type="submit"
+                    class="waves-effect waves btn-flat"
+                    value="Submit"
+                    onclick="return validateform()"
+                  >
+                    SUBMIT
+                  </button>
+                </li>
+              -->
                     </ul>
                 </form>
                 <p style="color:white; text-align:center" id="login-mobile">
@@ -93,18 +113,28 @@
             </div>
         </div>
     </div>
-    <!-- <script src="/node_modules/sal.js/dist/sal.js">
-    </script> -->
-    <!-- <script>
-        sal({
-            once: true
-        });
-    </script> -->
+
+    <!--
+      <script src="/node_modules/sal.js/dist/sal.js">
+      </script>
+    -->
+    <!--
+      <script>
+          sal({
+              once: true
+          });
+      </script>
+    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
     <script>
-        // $('.tooltipped').tooltip();
+        var onloadCallback = function () {
+            grecaptcha.execute();
+        };
+
+        function setResponse(response) {}
     </script>
-    <!-- <script src="/scripts/validate.js"></script> -->
 </body>
 
 </html>
