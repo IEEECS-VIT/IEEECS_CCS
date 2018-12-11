@@ -76,11 +76,11 @@
           </p>
           <textarea id="q<%=count%>" class="materialize-textarea" placeholder="Type your answer" data-length="1000"></textarea>
         </div>
+        <% }}); %>
+        <% if (t_count==0) { %>
+        <h5 style="text-align:center;">You have not chosen this domain.</h5>
+        <% } %>
       </div>
-      <% }}); %>
-      <% if (t_count==0) { %>
-      <h5 style="text-align:center;">You have not chosen this domain...</h5>
-      <% } %>
     </div>
   </div>
   <div id="management_tab" class="col s12">
