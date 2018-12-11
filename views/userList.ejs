@@ -73,6 +73,17 @@
 
 
                               <!-- PRINT THE TABLE DATA -->
+                              <% var temp; %>
+                              <% for(var i=0;i < data.length ;i++) {%>
+                              <% for ( var j=i; j < data.length; j++){ %>
+                              <% if(data[j].regno < data[i].regno){ %>
+                                <% temp = data[i]; %>
+                                <% data[i]=data[j]; %>
+                                <% data[j]=temp; %>
+                                <% } %>
+                              <% } %>
+                              <% } %>
+
                               <% data.forEach(function(student) { %>
                                 <li>
                                       <div id="<%= student.regno %>" class="collapsible-header center">
@@ -112,6 +123,21 @@
                                                         <% } %>
 
                                                   </p>
+                                                  <p><b>Time Taken:</b>        
+                                                    <% var time=(student.endTime-student.startTime)/60000; %>
+                                                    <% var t= time.toString(); %>
+                                                    <% var tarray= t.split('.'); %>
+                                                    <%= tarray[0] %> min and 
+                                                    <% var t1 = Number(tarray[1]); %>
+                                                    <% t1= t1 * 60; %>
+                                                    <% var t2=t1.toString(); %>
+                                                    <% var t2array=t2.split('.'); %>
+                                                    <%= t2[0] %> sec
+
+
+                                                </p>
+
+
                                           <p> <a  href="/admin/userdata/<%= student.regno %>">View answers</a> </p>
                                            
                                           </span>
