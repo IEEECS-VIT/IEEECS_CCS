@@ -86,6 +86,7 @@
               </div>
               <span class="button-placement">
                 <a
+                  id="begin"
                   class="waves-effect waves btn-flat custom-button"
                   onclick="displayDomains()"
                   >Begin Quiz</a
@@ -113,9 +114,8 @@
       // var design = $('.d').val();
     });
 
-    var domain = [];
-
     function displayDomains() {
+      var domain = [];
       console.log("Hello");
       if ($(".t").is(":checked")) {
         console.log("hello");

@@ -108,6 +108,16 @@ textarea:focus:not([readonly]) {
   border-radius: 5px;
 }
 
+.pc-submit:hover {
+  color: #faa41a !important;
+  background-color: white !important;
+}
+
+.pc-submit:active {
+  color: #faa41a !important;
+  background-color: white !important;
+}
+
 .mobile {
   display: none;
 }
