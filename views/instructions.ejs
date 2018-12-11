@@ -116,6 +116,7 @@
 
     function displayDomains() {
       var domain = [];
+      $("#begin").prop("disabled", true);
       console.log("Hello");
       if ($(".t").is(":checked")) {
         console.log("hello");
@@ -149,9 +150,11 @@
           },
           error: function(msg) {
             console.log(msg);
+            $("#begin").prop("disabled", false);
           }
         });
       } else {
+        $("#begin").prop("disabled", false);
         alert("Please Select a Domain!");
       }
     }
