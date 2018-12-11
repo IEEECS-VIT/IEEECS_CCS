@@ -79,7 +79,7 @@ textarea:focus:not([readonly]) {
   padding: 1em 0 0 0;
 }
 
-.sidenav li > a:hover {
+.sidenav li>a:hover {
   background-color: #2c2c2c;
   /* color: #FAA41A !important; */
 }
@@ -116,7 +116,7 @@ textarea:focus:not([readonly]) {
 /* min-height: 1000vh; */
 /* min-height: calc(75vh*10); */
 /* set min height to the probable amout of extended text areas totaled with all the 10 questions */
-
+/* 
 @media only screen and (max-width: 993px) {
   .brand-logo {
     display: none !important;
@@ -127,4 +127,4 @@ textarea:focus:not([readonly]) {
   .brand-logo {
     display: block !important;
   }
-}
+} */
