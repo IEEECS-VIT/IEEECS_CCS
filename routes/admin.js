@@ -27,7 +27,8 @@ router.get("/userdata/:idd", async (req, res, next) => {
       { regno: idd },
       "regno response status overSmart"
     ).populate("response.questionId", "question qDomain answer");
-    console.log(data);
+    // console.log(data);
+    // res.json(data);
     res.render("userAns", { data: data });
     // res.json(data);
   } catch (error) {
