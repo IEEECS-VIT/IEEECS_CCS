@@ -61,11 +61,11 @@
           <ul class="">
             <li class="input-field">
               <label for="regno">Registration No.</label>
-              <input id="regno" type="text" name="regno" pattern="18[A-Z]{3,}[0-9]{4,}" required />
+              <input class="validate" id="regno" type="text" name="regno" pattern="18[A-Z]{3,}[0-9]{4,}" required />
             </li>
             <li class="input-field">
               <label for="pwd">Password</label>
-              <input id="pwd" type="password" name="password" />
+              <input id="pwd" class="validate" type="password" name="password" required />
             </li>
             <p style="color:red;font-size:13px;text-align:center;">
               <%=message%>
