@@ -7,7 +7,7 @@ var A_Database = require("../models/applicant");
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/loggedout");
+  res.redirect("/");
 });
 
 router.get("/", async (req, res, next) => {
