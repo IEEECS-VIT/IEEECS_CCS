@@ -1,86 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>IEEECS | Selections</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css "> -->
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>IEEECS | Selections</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <!-- <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css "> -->
-  <link rel="stylesheet" href="/stylesheets/register.css" />
-  <link rel="stylesheet" href="/stylesheets/login.css" />
-</head>
+  <body>
+    <!--
+      <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    -->
 
-<body>
-  <!-- <div class="preloader-wrapper active">
-    <div class="spinner-layer spinner-red-only">
-      <div class="circle-clipper left">
-        <div class="circle"></div>
-      </div>
-      <div class="gap-patch">
-        <div class="circle"></div>
-      </div>
-      <div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-    </div>
-  </div> -->
+    <div id="cover"></div>
+    <script>
+      $(window).on("load", function() {
+        $("#cover").fadeOut(100);
+      });
+    </script>
 
-  <div id="cover"></div>
-  <script>
-    $(window).on('load', function(){
-    $('#cover').fadeOut(1000);
-    });
-  </script>
-
-  <div class="container">
-    <div class="row">
-      <div class="col12 top">
-        <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
+    <div class="container">
+      <div class="row">
+        <div class="col12 top">
+          <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
+        </div>
       </div>
-    </div>
-    <div class="row" data-sal-duration="500" data-sal="fade" data-sal-delay="300" data-sal-easing="ease-in">
-      <div class="col s7 s12 m12 l7 sect1">
-        <div class="right-inner">
-          <h4 class="heading">Core Comittee Selections</h4>
-          <img src="/images/illustration.svg" alt="illustration" class="illustration" />
-          <p id="login-web">
+      <div
+        class="row"
+        data-sal-duration="500"
+        data-sal="fade"
+        data-sal-delay="300"
+        data-sal-easing="ease-in"
+      >
+        <div class="col s7 s12 m12 l7 sect1">
+          <div class="right-inner">
+            <h4 class="heading">Core Comittee Selections</h4>
+            <img
+              src="/images/illustration.svg"
+              alt="illustration"
+              class="illustration"
+            />
+            <p id="login-web">
+              Haven't registered? Register
+              <a href="/register" class="login-here">here</a>
+            </p>
+          </div>
+        </div>
+        <div class="col s5 s12 m12 l5 sect2">
+          <form action="/login" method="POST">
+            <h4 class="form-heading">Login</h4>
+            <ul class="">
+              <li class="input-field">
+                <label for="regno">Registration No.</label>
+                <input
+                  id="regno"
+                  type="text"
+                  name="regno"
+                  pattern="18[A-Z]{3,}[0-9]{4,}"
+                  required
+                />
+              </li>
+              <li class="input-field">
+                <label for="pwd">Password</label>
+                <input id="pwd" type="password" name="password" />
+              </li>
+              <p style="color:red;font-size:13px;text-align:center;">
+                <%=message%>
+              </p>
+              <li class="button-placement custom-button">
+                <button
+                  type="submit"
+                  class="waves-effect waves btn-flat"
+                  value="Submit"
+                >
+                  SUBMIT
+                </button>
+              </li>
+            </ul>
+          </form>
+          <p style="color:white; text-align:center" id="login-mobile">
             Haven't registered? Register
             <a href="/register" class="login-here">here</a>
           </p>
         </div>
       </div>
-      <div class="col s5 s12 m12 l5 sect2">
-        <form action="/login" method="POST">
-          <h4 class="form-heading">Login</h4>
-          <ul class="">
-            <li class="input-field">
-              <label for="regno">Registration No.</label>
-              <input id="regno" type="text" name="regno" pattern="18[A-Z]{3,}[0-9]{4,}" required />
-            </li>
-            <li class="input-field">
-              <label for="pwd">Password</label>
-              <input id="pwd" type="password" name="password" />
-            </li>
-            <p style="color:red;font-size:13px;text-align:center;">
-              <%=message%>
-            </p>
-            <li class="button-placement custom-button">
-              <button type="submit" class="waves-effect waves btn-flat" value="Submit">SUBMIT</button>
-            </li>
-          </ul>
-        </form>
-        <p style="color:white; text-align:center" id="login-mobile">
-          Haven't registered? Register
-          <a href="/register" class="login-here">here</a>
-        </p>
-      </div>
     </div>
-  </div>
-  <!--
+    <!--
       <script src="/node_modules/sal.js/dist/sal.js">
       </script>
       <script>
@@ -89,7 +118,6 @@
         });
       </script>
     -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
 </html>
