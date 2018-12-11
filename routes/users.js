@@ -105,7 +105,7 @@ router.post("/domain", auth.isUser, auth.isAttempt, async (req, res, next) => {
   try {
     var startTime = Date.now();
     var domain = req.body.domain;
-    var maxTime = domain.length * 900;
+    var maxTime = domain.length * 600;
     await A_Database.findByIdAndUpdate(req.user.id, {
       domain: domain,
       startTime: startTime,
