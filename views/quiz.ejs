@@ -31,10 +31,9 @@
           <span class="watch" id="timer"></span>
         </div>
 
-        <a href="#" data-target="mobile" class="sidenav-trigger"><i class="fa fa-bars" style="color:white; font-size: 24px"></i></a>
+        <!-- <a href="#" data-target="mobile" class="sidenav-trigger"><i class="fa fa-bars" style="color:white; font-size: 24px"></i></a> -->
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a onclick="submit()" class="snl">Submit</a></li>
-          <!-- <li><a href="/logout" class="snl">Logout</a></li> -->
         </ul>
       </div>
       <div class="nav-content">
@@ -48,12 +47,12 @@
       </div>
     </nav>
   </div>
-  <ul class="sidenav custom-sidenav" id="mobile">
+  <!-- <ul class="sidenav custom-sidenav" id="mobile">
     <li class="center">
       <img src="/images/IEEE-CS_New.png" alt="logo" class="custom-logo mobile-logo" />
     </li>
-    <li><a onclick="submit()" style="color:white">Submit</a></li>
-    <!-- <li><a href="/logout" style="color:white">Logout</a></li> -->
+    <li><a onclick="submit()" style="color:white">Submit</a></li> -->
+  <!-- <li><a href="/logout" style="color:white">Logout</a></li> -->
   </ul>
   <% var count=0%>
   <div id="technical_tab" class="col s12">
@@ -74,11 +73,14 @@
           <p id="qid<%=count%>" style="display:none">
             <%=obj.questionId._id%>
           </p>
-          <textarea id="q<%=count%>" class="materialize-textarea" placeholder="Type your answer" data-length="1000"></textarea>
+          <textarea id="q<%=count%>" class="materialize-textarea" placeholder="Type your answer" data-length="1000"
+            required></textarea>
         </div>
         <% }}); %>
         <% if (t_count==0) { %>
         <h5 style="text-align:center;">You have not chosen this domain.</h5>
+        <% } else {%>
+        <p style="color:red">sfboidnfbdfinb</p>
         <% } %>
       </div>
     </div>
@@ -101,7 +103,8 @@
           <p id="qid<%=count%>" style="display:none">
             <%=obj.questionId._id%>
           </p>
-          <textarea id="q<%=count%>" class="materialize-textarea" placeholder="Type your answer" data-length="1000"></textarea>
+          <textarea id="q<%=count%>" class="materialize-textarea" placeholder="Type your answer" data-length="1000"
+            required></textarea>
         </div>
       </div>
       <% }}); %>
@@ -128,7 +131,8 @@
           <p id="qid<%=count%>" style="display:none">
             <%=obj.questionId._id%>
           </p>
-          <textarea id="q<%=count%>" class="materialize-textarea" placeholder="Type your answer" data-length="1000"></textarea>
+          <textarea id="q<%=count%>" class="materialize-textarea" placeholder="Type your answer" data-length="1000"
+            required></textarea>
         </div>
       </div>
       <% }}); %>
@@ -136,6 +140,7 @@
       <h5 style="text-align:center;">You have not chosen this domain...</h5>
       <% } %>
     </div>
+
   </div>
   <div id="modal1" class="modal">
     <div class="modal-content" style="color:black;">
@@ -175,8 +180,8 @@
     });
   </script>
   <script>
-    var sec = parseInt("<%=data.maxTime%>");
-    // var sec = 10;
+    // var sec = parseInt("<%=data.maxTime%>");
+    var sec = 6000;
     var time = setInterval(myTimer, 1000);
     var flag = 0;
 
@@ -231,12 +236,12 @@
       }
     }
 
-    window.onbeforeunload = confirmExit;
+    // window.onbeforeunload = confirmExit;
 
-    function confirmExit(event) {
-      if (flag == 0) event.returnValue = "Sure?";
-      return null;
-    }
+    // function confirmExit(event) {
+    //   if (flag == 0) event.returnValue = "Sure?";
+    //   return null;
+    // }
   </script>
   <script>
     let questionElements = document.getElementsByClassName("q");
@@ -247,6 +252,11 @@
       );
     }
   </script>
+  <div class="row">
+    <div class="col s12">
+      <button>sdovinsdvoib</button>
+    </div>
+  </div>
 </body>
 
 </html>
