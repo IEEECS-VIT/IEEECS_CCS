@@ -110,6 +110,11 @@
       var design = $(".d").val();
       domain.push(design);
     }
+    var numOfDom = domain.length;
+    console.log(numOfDom);
+    if (numOfDom == 0) {
+      alert("Please Select a Domain!");
+    }
     $.ajax({
       url: "/domain",
       method: "POST",
@@ -132,14 +137,8 @@
   //     console.log(selected);
   //     // console.log(stringArray);
   // }
-  function checkDomain() {
-    var numOfDom = domain.length;
-    // if ()
-    console.log(numOfDom);
-    if (numOfDom == 0) {
-      alert("Please select a domain!");
-    }
-  }
+  // var numOfDom = domain.length;
+  // if ()
 </script>
 
 </html>

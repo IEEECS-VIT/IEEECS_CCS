@@ -44,3 +44,10 @@ p {
     height: 50%;
     width: 50%;
 }
+
+#cover {
+    background: url("/images/load.svg") no-repeat scroll center center #202020;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
