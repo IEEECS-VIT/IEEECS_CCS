@@ -1,159 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>IEEECS | Selections</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:400,600,700"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!--
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>IEEECS | Selections</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="icon" href="images/logoicon.png">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!--
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
       </script>
     -->
-    <!--
+  <!--
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     -->
-    <!-- <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css "> -->
-    <link rel="stylesheet" href="/stylesheets/register.css" />
-  </head>
+  <!-- <link rel="stylesheet" href="/node_modules/sal.js/dist/sal.css "> -->
+  <link rel="stylesheet" href="/stylesheets/register.css" />
+</head>
 
-  <body>
-    <div id="cover"></div>
-    <script>
-      $(window).on("load", function() {
+<body>
+  <div id="cover"></div>
+  <script>
+    $(window).on("load", function() {
         $("#cover").fadeOut(200);
       });
     </script>
-    <div class="container">
-      <div class="row">
-        <div class="col12 top">
-          <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
+  <div class="container">
+    <div class="row">
+      <div class="col12 top">
+        <img src="/images/IEEE-CS_New.png" alt="logo" class="logo" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s7 s12 m12 l7 sect1">
+        <div class="right-inner">
+          <h4 class="heading">Core Comittee Selections</h4>
+          <img src="/images/illustration.svg" alt="illustration" class="illustration" />
+          <p id="login-web">
+            Already registered? Log in <a href="/" class="login-here">here</a>
+          </p>
         </div>
       </div>
-      <div class="row">
-        <div class="col s7 s12 m12 l7 sect1">
-          <div class="right-inner">
-            <h4 class="heading">Core Comittee Selections</h4>
-            <img
-              src="/images/illustration.svg"
-              alt="illustration"
-              class="illustration"
-            />
-            <p id="login-web">
-              Already registered? Log in <a href="/" class="login-here">here</a>
-            </p>
-          </div>
-        </div>
-        <div class="col s5 s12 m12 l5 sect2">
-          <form action="/register" method="POST" name="reg_form">
-            <h4 class="form-heading">REGISTER</h4>
-            <ul class="">
-              <li class="input-field">
-                <label for="name">Name</label
-                ><input
-                  type="text"
-                  id="name"
-                  class="validate"
-                  name="name"
-                  pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$"
-                  required
-                />
-              </li>
-              <li class="input-field">
-                <label for="reg">Registration No.</label
-                ><input
-                  type="text"
-                  id="reg"
-                  class="validate"
-                  name="regno"
-                  pattern="18[A-Z]{3}[0-9]{4}$"
-                  required
-                />
-              </li>
-              <li class="input-field">
-                <label for="eml">Email</label
-                ><input
-                  id="eml"
-                  type="email"
-                  name="email"
-                  class="validate"
-                  required
-                />
-              </li>
-              <li class="input-field">
-                <label for="pno">Phone No.</label
-                ><input
-                  id="pno"
-                  type="number"
-                  name="phone"
-                  class="validate"
-                  pattern="^\d{10}$"
-                  required
-                />
-              </li>
-              <li class="input-field">
-                <label for="pwd">Password</label
-                ><input
-                  id="pwd"
-                  type="password"
-                  pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                  name="password"
-                  class="validate"
-                  required
-                />
-                <span class="helper-text"
-                  >Minimun 8 charecters. Must contain a Special character, a
-                  digit and Upper and Lowercase letters.</span
-                >
-              </li>
-              <li class="input-field gender">
-                <p>
-                  <label>
-                    <input
-                      name="gender"
-                      type="radio"
-                      value="male"
-                      class="validate"
-                      required
-                    />
-                    <span>Male</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input
-                      name="gender"
-                      value="female"
-                      type="radio"
-                      class="validate"
-                    />
-                    <span>Female</span>
-                  </label>
-                </p>
-              </li>
-              <p style="color:red;font-size:12px;text-align:center;width:100%;">
-                <%=message%>
+      <div class="col s5 s12 m12 l5 sect2">
+        <form action="/register" method="POST" name="reg_form">
+          <h4 class="form-heading">REGISTER</h4>
+          <ul class="">
+            <li class="input-field">
+              <label for="name">Name</label><input type="text" id="name" class="validate" name="name" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$"
+                required />
+            </li>
+            <li class="input-field">
+              <label for="reg">Registration No.</label><input type="text" id="reg" class="validate" name="regno"
+                pattern="18[A-Z]{3}[0-9]{3}[0-9]$" required />
+            </li>
+            <li class="input-field">
+              <label for="eml">Email</label><input id="eml" type="email" name="email" class="validate" required />
+            </li>
+            <li class="input-field">
+              <label for="pno">Phone No.</label><input id="pno" type="number" name="phone" class="validate" pattern="[0-9]{9}[0-9]$"
+                required />
+            </li>
+            <li class="input-field">
+              <label for="pwd">Password</label><input id="pwd" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                name="password" class="validate" required />
+              <span class="helper-text">Minimun 8 charecters. Must contain a Special character, a
+                Digit and Upper & Lowercase letters.</span>
+            </li>
+            <li class="input-field gender">
+              <p>
+                <label>
+                  <input name="gender" type="radio" value="male" class="validate" required />
+                  <span>Male</span>
+                </label>
               </p>
-              <div
-                class="g-recaptcha"
-                data-sitekey="6Lf96n8UAAAAAIPzsRSuQtoOldpI14e76_a3oz9g"
-                data-size="invisible"
-                data-callback="setResponse"
-              ></div>
-              <li class="button-placement custom-button">
-                <button type="submit" class="waves-effect waves btn-flat">
-                  Submit
-                </button>
-              </li>
-              <!--
+              <p>
+                <label>
+                  <input name="gender" value="female" type="radio" class="validate" />
+                  <span>Female</span>
+                </label>
+              </p>
+            </li>
+            <p style="color:red;font-size:12px;text-align:center;width:100%;">
+              <%=message%>
+            </p>
+            <div class="g-recaptcha" data-sitekey="6Lf96n8UAAAAAIPzsRSuQtoOldpI14e76_a3oz9g" data-size="invisible"
+              data-callback="setResponse"></div>
+            <li class="button-placement custom-button">
+              <button type="submit" class="waves-effect waves btn-flat">
+                Submit
+              </button>
+            </li>
+            <!--
                 <li class="button-placement custom-button">
                   <button
                     type="submit"
@@ -165,39 +105,36 @@
                   </button>
                 </li>
               -->
-            </ul>
-          </form>
-          <p style="color:white; text-align:center" id="login-mobile">
-            Already registered? Log in <a href="/" class="login-here">here</a>
-          </p>
-        </div>
+          </ul>
+        </form>
+        <p style="color:white; text-align:center" id="login-mobile">
+          Already registered? Log in <a href="/" class="login-here">here</a>
+        </p>
       </div>
     </div>
+  </div>
 
-    <!--
+  <!--
       <script src="/node_modules/sal.js/dist/sal.js">
       </script>
     -->
-    <!--
+  <!--
       <script>
           sal({
               once: true
           });
       </script>
     -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script
-      src="https://www.google.com/recaptcha/api.js?onload=onloadCallback"
-      async
-      defer
-    ></script>
-    <script>
-      var onloadCallback = function() {
-        grecaptcha.execute();
-      };
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
+  <script>
+    var onloadCallback = function () {
+      grecaptcha.execute();
+    };
 
-      function setResponse(response) {}
-    </script>
-  </body>
+    function setResponse(response) {}
+  </script>
+</body>
+
 </html>

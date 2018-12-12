@@ -45,7 +45,7 @@ router.post("/register", async (req, res, next) => {
         .addUser(req.body)
         .then(function(message) {
           if (message === "ok") return res.redirect("/");
-          res.render("register", { message: message });
+          return res.render("register", { message: message });
         })
         .catch(err => {
           console.log(err);
@@ -83,7 +83,7 @@ router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
 //   }
 // });
 
-router.get("/logout", auth.isUser, (req, res) => {
+router.get("/logout", auth.isLoggedIn, (req, res) => {
   req.logout();
   res.redirect("/");
 });

@@ -41,11 +41,11 @@
             <span class="watch" id="timer"></span>
           </div>
 
-          <a href="#" data-target="mobile" class="sidenav-trigger"
+          <!-- <a href="#" data-target="mobile" class="sidenav-trigger"
             ><i class="fa fa-bars" style="color:white; font-size: 24px"></i
-          ></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a onclick="submit()" class="snl">Submit</a></li>
+          ></a> -->
+          <ul class="right">
+            <li><button onclick="submit()" class="pc-submit">Submit</button></li>
             <!-- <li><a href="/logout" class="snl">Logout</a></li> -->
           </ul>
         </div>
@@ -60,7 +60,7 @@
         </div>
       </nav>
     </div>
-    <ul class="sidenav custom-sidenav" id="mobile">
+    <!-- <ul class="sidenav custom-sidenav" id="mobile">
       <li class="center">
         <img
           src="/images/IEEE-CS_New.png"
@@ -68,14 +68,15 @@
           class="custom-logo mobile-logo"
         />
       </li>
-      <li><a onclick="submit()" style="color:white">Submit</a></li>
+      <li><a onclick="submit()" style="color:white">Submit</a></li> -->
       <!-- <li><a href="/logout" style="color:white">Logout</a></li> -->
     </ul>
-    <% var count=0%>
+    <% var count=0%> <% var t_count=0; %> <% var m_count=0; %> <% var d_count=0;
+    %>
     <div id="technical_tab" class="col s12">
       <div class="box tech-q">
-        <% var t_count=0; %> <% data.response.forEach((obj) => { %> <%
-        if(obj.questionId.qDomain == "technical") { %>
+        <% data.response.forEach((obj) => { %> <% if(obj.questionId.qDomain ==
+        "technical") { %>
         <div class="question">
           <% t_count++; count++; %>
           <div class="repeated">
@@ -96,11 +97,22 @@
         <h5 style="text-align:center;">You have not chosen this domain.</h5>
         <% } %>
       </div>
+      <% if(t_count>0) { %>
+      <div class="button-pos">
+        <button
+          style="text-align:center;"
+          class="mobile mobile-submit"
+          onclick="submit()"
+        >
+          Submit
+        </button>
+      </div>
+      <% } %>
     </div>
     <div id="management_tab" class="col s12">
       <div class="box tech-q">
-        <% var m_count=0; %> <% data.response.forEach((obj) => { %> <%
-        if(obj.questionId.qDomain == "management") { %>
+        <% data.response.forEach((obj) => { %> <% if(obj.questionId.qDomain ==
+        "management") { %>
         <div class="question">
           <% m_count++;count++; %>
           <div class="repeated">
@@ -121,11 +133,22 @@
         <h5 style="text-align:center;">You have not chosen this domain...</h5>
         <% } %>
       </div>
+      <% if(m_count>0) { %>
+      <div class="button-pos">
+        <button
+          style="text-align:center;"
+          class="mobile mobile-submit"
+          onclick="submit()"
+        >
+          Submit
+        </button>
+      </div>
+      <% } %>
     </div>
     <div id="design_tab" class="col s12">
       <div class="box tech-q">
-        <% var d_count=0; %> <% data.response.forEach((obj) => { %> <%
-        if(obj.questionId.qDomain == "design") { %>
+        <% data.response.forEach((obj) => { %> <% if(obj.questionId.qDomain ==
+        "design") { %>
         <div class="question">
           <% d_count++; count++;%>
           <div class="repeated">
@@ -146,6 +169,17 @@
         <h5 style="text-align:center;">You have not chosen this domain...</h5>
         <% } %>
       </div>
+      <% if(d_count>0) { %>
+      <div class="button-pos">
+        <button
+          style="text-align:center;"
+          class="mobile mobile-submit"
+          onclick="submit()"
+        >
+          Submit
+        </button>
+      </div>
+      <% } %>
     </div>
     <div id="modal1" class="modal">
       <div class="modal-content" style="color:black;">
@@ -241,12 +275,12 @@
         }
       }
 
-      window.onbeforeunload = confirmExit;
+      // window.onbeforeunload = confirmExit;
 
-      function confirmExit(event) {
-        if (flag == 0) event.returnValue = "Sure?";
-        return null;
-      }
+      // function confirmExit(event) {
+      //   if (flag == 0) event.returnValue = "Sure?";
+      //   return null;
+      // }
     </script>
     <script>
       let questionElements = document.getElementsByClassName("q");
