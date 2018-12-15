@@ -84,9 +84,10 @@
               >
                 <div class="row ">
                   <div class="col mys2"><b>Reg No.</b></div>
-                  <div class="col mys3"><b>Name</b></div>
+                  <div class="col mys2"><b>Name</b></div>
                   <div class="col mys2"><b>Phone no.</b></div>
-                  <div class="col mys3"><b>Oversmart</b></div>
+                  <div class="col mys2"><b>Reviewed By</b></div>
+                  <div class="col mys2"><b>Oversmart</b></div>
                   <div class="col mys2"><b>Status</b></div>
                   <!-- <div class="col s2"><b>Domain</b></div> -->
                 </div>
@@ -103,9 +104,10 @@
               <div id="<%= student.regno %>" class="collapsible-header center">
                 <div class="row">
                   <div class="col mys2"><%= student.regno %></div>
-                  <div class="col mys3"><%= student.name %></div>
+                  <div class="col mys2"><%= student.name %></div>
                   <div class="col mys2"><%= student.phone %></div>
-                  <div class="col mys3">
+                  <div class="col mys2"><%= student.check %></div>
+                  <div class="col mys2">
                     <% if(student.overSmart == 'yes') { %> YES <% } else { %> NO
                     <% } %>
                   </div>

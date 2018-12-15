@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
   try {
     var data = await A_Database.find(
       { $and: [{ role: "public" }, { submitted: true }] },
-      "regno status name domain phone startTime endTime"
+      "regno status name domain phone overSmart check startTime endTime"
     );
     res.render("userList", { data: data });
   } catch (error) {
@@ -46,7 +46,7 @@ router.post("/userdata/:idd", async (req, res, next) => {
     var idd = req.path;
     idd = idd.split("/");
     idd = idd[2];
-    await adminService.updateStatus(idd, req.user.regno, req.body.status);
+    await adminService.updateStatus(idd, req.user.name, req.body.status);
     res.send("Admin test complete");
     res.redirect("/admin");
   } catch (error) {
