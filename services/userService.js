@@ -34,7 +34,7 @@ module.exports.timeStatus = async id => {
     var maxTime = data.maxTime;
 
     var duration = endTime - startTime;
-    var actDuration = duration - maxTime;
+    var actDuration = duration - maxTime * 1000;
     actDuration = actDuration / 60000;
     var overSmart = "no";
     if (actDuration > 5) {

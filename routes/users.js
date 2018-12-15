@@ -39,7 +39,7 @@ router.post("/register", async (req, res, next) => {
     .then(response => {
       let cResponse = JSON.parse(response);
       if (!cResponse.success) {
-        res.render("register", { message: "Invalid Captcha" });
+        return res.render("register", { message: "Invalid Captcha" });
       }
       return userFunctions
         .addUser(req.body)
