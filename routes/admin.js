@@ -5,7 +5,6 @@ var adminService = require("../services/adminService");
 var A_Database = require("../models/applicant");
 /* GET home page. */
 
-
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
@@ -14,7 +13,7 @@ router.get("/logout", (req, res) => {
 router.get("/", async (req, res, next) => {
   try {
     var data = await A_Database.find(
-      { role: "public" },
+      { $and: [{ role: "public" }, { submitted: true }] },
       "regno status name domain phone startTime endTime"
     );
     res.render("userList", { data: data });

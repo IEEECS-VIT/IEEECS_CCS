@@ -11,6 +11,11 @@
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <title>IEEE CS</title>
+      <style>
+      .q {
+        color: #faa41a;
+      }
+      </style>
     </head>
 
     <body>
@@ -54,19 +59,16 @@
         <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "technical") { %>
             <% t_count++; %>
-            <p><h5>Question 
-                <%= t_count%> 
-            </h5></p>
-            <p><%= obj.questionId.question %></p>
-        <p><h5>User Answer
-            <%= t_count%> </h5></p>
-        <p>
+            <h5 class="q">Question <%= t_count%> 
+            </h5>
+            <p><h5><%= obj.questionId.question %></h5></p>
+        <p><h5 class="q">User Answer:</h5></p>
+        <p><h5>
         <%= obj.userSolution %>
-      </p>
-        <p><h5>Expected Answer
-                <%= t_count%> </h5></p>
+      </h5></p>
+        <p><h5 class="q">Expected Answer</h5></p>
         <p>
-            <%= obj.questionId.answer %>
+            <h5><%= obj.questionId.answer %></h5>
         </p>
         <div>&nbsp;</div>
    <hr>
@@ -89,21 +91,18 @@
         <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "management") { %>
             <% m_count++; %>
-            <p><h5>Question
-                <%= m_count%> 
+            <p><h5 class="q">Question <%= m_count%> 
             </h5></p>
-            <p><%= obj.questionId.question %></p>
-            <p><h5>User Answer
-                <%= m_count%> </h5></p>
-            <p>
+            <p><h5><%= obj.questionId.question %></h5></p>
+            <p><h5 class="q">User Answer:</h5></p>
+            <p><h5>
                <%= obj.userSolution %>
-            </p>
-        <p><h5>Expected Answer
-                <%= m_count%> 
+              </h5></p>
+        <p><h5 class="q">Expected Answer: 
         </h5></p>
-        <p>
+        <p><h5>
             <%= obj.questionId.answer %>
-        </p>
+          </h5></p>
         <div>&nbsp;</div>
    <hr>
    <div>&nbsp;</div>
@@ -124,21 +123,18 @@
         <% data[0].response.forEach((obj) => { %>
           <% if(obj.questionId.qDomain == "design") { %>
             <% d_count++; %>
-            <p><h5>Question
-                <%= d_count%>
+            <p><h5 class="q">Question <%= d_count%>
             </h5></p>
-            <p><%= obj.questionId.question %></p>
-            <p><h5>User Answer
-                <%= d_count%> </h5></p>
-            <p>
+            <h5><%= obj.questionId.question %></h5>
+            <p><h5 class="q">User Answer:</h5></p>
+            <p><h5>
                 <%= obj.userSolution %>
-          </p>
-        <p><h5>Expected Answer
-                <%= d_count%>
+              </h5></p>
+        <p><h5 class="q">Expected Answer:
         </h5></p>
-        <p>
+        <p><h5>
             <%= obj.questionId.answer %>
-        </p>
+          </h5></p>
         <div>&nbsp;</div>
    <hr>
    <div>&nbsp;</div>
@@ -269,6 +265,14 @@ $(document).ready(function () {
       
       </script>
 
-
+<script>
+  let questionElements = document.getElementsByTagName("h5");
+  for (let i = 0; i < questionElements.length; i++) {
+    questionElements[i].innerHTML = questionElements[i].innerHTML.replace(
+      /(\\n|\n)/g,
+      "<br />"
+    );
+  }
+</script>
     </body>
 </html>
