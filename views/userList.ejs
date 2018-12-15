@@ -42,17 +42,36 @@
                       <div id="card2" class=" card  color1">
                         <div class="card-content">
                           <span class="card-title white-text center"><b>Student Details</b></span>
-                          <!-- <nav>
-                                <div class="nav-wrapper color2">
-                                  <form>
-                                    <div class="input-field">
-                                      <input id="search" type="search" required>
-                                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                      <i class="material-icons">close</i>
-                                    </div>
-                                  </form>
-                                </div>
-                              </nav> -->
+                          <span class="card-title white-text left"><b>No. of applicants: </b>
+                            <%= data.length %> 
+                          </span>
+                          <br>
+                          <br>
+                            <% var y=0; %>
+                            <% for(var i=0 ;i < data.length ; i++) { %>
+                              <% if(data[i].domain.length == 0){ %>
+                                <% y++; %>
+                                <% }} %>
+                              <span class="card-title white-text left"><b>No. of applicants who haven't answered:</b>
+                                <%= y %>
+                              </span>   
+                          <br>
+                          <br>
+                            
+
+
+
+                          <% var x=0 ; %>
+                          <% for(var i=0; i< data.length ; i++){ %>
+                          <% if(data[i].status == 'hold') { %>
+                            <% x++ ; %>
+                            <% } } %>
+                            <span class="card-title white-text left"><b>No. of applicants on hold: </b>
+                              <%= x %> 
+                            </span>  
+                          
+                          <div>&nbsp;</div>
+                         
                           <div>&nbsp;</div>
                       
                           <ul class="collapsible popout">
@@ -83,14 +102,16 @@
                                 <% } %>
                               <% } %>
                               <% } %>
+                              
 
+                              
                               <% data.forEach(function(student) { %>
                                 <li>
                                       <div id="<%= student.regno %>" class="collapsible-header center">
                                           <div class="row">
                                               <div class="col mys2"><%= student.regno %></div>
                                               <div class="col mys3"><%= student.name %></div>
-                                              <div class="col mys2">1234567890</div>
+                                              <div class="col mys2"><%= student.phone %></div>
                                               <div class="col mys3">
                                                  <% if(student.overSmart == 'yes') { %>
                                                     YES
