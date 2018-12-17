@@ -22,38 +22,47 @@ router.post(
   })
 );
 
+router.get("/closed", (req, res) => {
+  res.render("closed");
+});
+
+router.get("/register", (req, res) => {
+  return res.redirect("/closed");
+  res.render("register", { message: "" });
+});
+
 router.get("/register", (req, res) => {
   res.render("register", { message: "" });
 });
 
-router.post("/register", async (req, res, next) => {
-  const options = {
-    method: "POST",
-    uri: "https://www.google.com/recaptcha/api/siteverify",
-    formData: {
-      secret: process.env.RECAPTCHA_SECRET,
-      response: req.body["g-recaptcha-response"]
-    }
-  };
-  request(options)
-    .then(response => {
-      let cResponse = JSON.parse(response);
-      if (!cResponse.success) {
-        return res.render("register", { message: "Invalid Captcha" });
-      }
-      return userFunctions
-        .addUser(req.body)
-        .then(function(message) {
-          if (message === "ok") return res.redirect("/");
-          return res.render("register", { message: message });
-        })
-        .catch(err => {
-          console.log(err);
-          next(err);
-        });
-    })
-    .catch(err => next(err));
-});
+// router.post("/register", async (req, res, next) => {
+//   const options = {
+//     method: "POST",
+//     uri: "https://www.google.com/recaptcha/api/siteverify",
+//     formData: {
+//       secret: process.env.RECAPTCHA_SECRET,
+//       response: req.body["g-recaptcha-response"]
+//     }
+//   };
+//   request(options)
+//     .then(response => {
+//       let cResponse = JSON.parse(response);
+//       if (!cResponse.success) {
+//         return res.render("register", { message: "Invalid Captcha" });
+//       }
+//       return userFunctions
+//         .addUser(req.body)
+//         .then(function(message) {
+//           if (message === "ok") return res.redirect("/");
+//           return res.render("register", { message: message });
+//         })
+//         .catch(err => {
+//           console.log(err);
+//           next(err);
+//         });
+//     })
+//     .catch(err => next(err));
+// });
 
 router.get("/user-role", auth.isLoggedIn, (req, res, next) => {
   try {
@@ -87,6 +96,7 @@ router.get("/logout", auth.isLoggedIn, (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
 router.get("/thanks", auth.isUser, (req, res, next) => {
   req.logout();
   res.render("thanks");
@@ -97,29 +107,32 @@ router.get(
   auth.isUser,
   auth.isAttempt,
   async (req, res, next) => {
+    return res.redirect("/closed");
+
     res.render("instructions", { user: req.user });
   }
 );
 
-router.post("/domain", auth.isUser, auth.isAttempt, async (req, res, next) => {
-  try {
-    var startTime = Date.now();
-    var domain = req.body.domain;
-    var maxTime = domain.length * 600;
-    await A_Database.findByIdAndUpdate(req.user.id, {
-      domain: domain,
-      startTime: startTime,
-      maxTime: maxTime
-    });
-    // res.redirect
-    res.json({ success: true });
-  } catch (error) {
-    return next(error);
-  }
-});
+// router.post("/domain", auth.isUser, auth.isAttempt, async (req, res, next) => {
+//   try {
+//     var startTime = Date.now();
+//     var domain = req.body.domain;
+//     var maxTime = domain.length * 600;
+//     await A_Database.findByIdAndUpdate(req.user.id, {
+//       domain: domain,
+//       startTime: startTime,
+//       maxTime: maxTime
+//     });
+//     // res.redirect
+//     res.json({ success: true });
+//   } catch (error) {
+//     return next(error);
+//   }
+// });
 
 router.get("/question", auth.isUser, auth.isAttempt, async (req, res, next) => {
   try {
+    return res.redirect("/closed");
     var stuff = await userService.setQuestions(req.user.id);
 
     let questions = stuff.map(question => {
@@ -144,31 +157,31 @@ router.get("/question", auth.isUser, auth.isAttempt, async (req, res, next) => {
   }
 });
 
-router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
-  try {
-    const solutions = req.body.solutions;
-    console.log(solutions);
-    var endTime = Date.now();
-    let user = await A_Database.findById(req.user.id);
-    console.log(user);
-    let responseToUpdate = user.response;
-    responseToUpdate.forEach(question => {
-      solutions.forEach(solution => {
-        if (solution.questionId == question.questionId) {
-          question.userSolution = solution.userSolution;
-        }
-      });
-    });
-    user.response = responseToUpdate;
-    user.submitted = true;
-    user.endTime = endTime;
-    await user.save();
+// router.post("/question", auth.isUser, auth.isSubmit, async (req, res, next) => {
+//   try {
+//     const solutions = req.body.solutions;
+//     console.log(solutions);
+//     var endTime = Date.now();
+//     let user = await A_Database.findById(req.user.id);
+//     console.log(user);
+//     let responseToUpdate = user.response;
+//     responseToUpdate.forEach(question => {
+//       solutions.forEach(solution => {
+//         if (solution.questionId == question.questionId) {
+//           question.userSolution = solution.userSolution;
+//         }
+//       });
+//     });
+//     user.response = responseToUpdate;
+//     user.submitted = true;
+//     user.endTime = endTime;
+//     await user.save();
 
-    await userService.timeStatus(req.user.id);
-    res.json({ success: true });
-  } catch (error) {
-    return next(error);
-  }
-});
+//     await userService.timeStatus(req.user.id);
+//     res.json({ success: true });
+//   } catch (error) {
+//     return next(error);
+//   }
+// });
 
 module.exports = router;
