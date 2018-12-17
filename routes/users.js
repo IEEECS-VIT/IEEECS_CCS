@@ -31,10 +31,6 @@ router.get("/register", (req, res) => {
   res.render("register", { message: "" });
 });
 
-router.get("/register", (req, res) => {
-  res.render("register", { message: "" });
-});
-
 // router.post("/register", async (req, res, next) => {
 //   const options = {
 //     method: "POST",
@@ -107,6 +103,7 @@ router.get(
   auth.isUser,
   auth.isAttempt,
   async (req, res, next) => {
+    req.logout();
     return res.redirect("/closed");
 
     res.render("instructions", { user: req.user });
@@ -132,6 +129,7 @@ router.get(
 
 router.get("/question", auth.isUser, auth.isAttempt, async (req, res, next) => {
   try {
+    req.logout();
     return res.redirect("/closed");
     var stuff = await userService.setQuestions(req.user.id);
 
